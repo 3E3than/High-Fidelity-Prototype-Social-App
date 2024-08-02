@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .circle {
+        width: 50px;
+        height: 50px;
+        /* border: red; */
+        background-color: #333;
+        border-radius: 25px;
+      }
+    </style>
+</head>
+
+<body>
+    <div class="globe">
+        <!-- optional for now but just need to link to a map-->
+    </div>
+
+    <div class="menu">
+        <!-- need the menu page to be linked here-->
+    </div>
+
+    <div class="bar-search">
+        <input type="text" placeholder="Search Bars">
+        <button type="submit">Submit</i></button>
+        <div class="filter">
+            <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+            <!-- <input id="myInput" onkeyup="filterFunction()"> -->
+            <a>atmosphere</a>
+            <a>music</a>
+            <a>drinks</a>
+        </div>
+    </div>
+
+    <div class="top-three">
+        <div class="top-middle">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
+
+    <div class="all-bars">
+        <div>bar 1</div><br>
+        <div>bar 2</div><br>
+        <div>bar 3</div><br>
+        <div>bar 4</div><br>
+        <div>bar 5</div><br>
+        <div>bar 6</div><br>
+        <div>bar 7</div><br>
+    </div>
+
+</body>
+<!-- </body> -->
+<script>
+    // function myFunction() {
+    //     document.getElementById("myDropdown").classList.toggle("show");
+    // }
+
+    // function filterFunction() {
+    //     var input, filter, ul, li, a, i;
+    //     input = document.getElementById("myInput");
+    //     filter = input.value.toUpperCase();
+    //     div = document.getElementById("myDropdown");
+    //     a = div.getElementsByTagName("a");
+    //     for (i = 0; i < a.length; i++) {
+    //         txtValue = a[i].textContent || a[i].innerText;
+    //         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //             a[i].style.display = "";
+    //         } else {
+    //             a[i].style.display = "none";
+    //         }
+    //     }
+    // }
+</script>
+
+</html>
