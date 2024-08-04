@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,5 +26,98 @@
 
     </div>
 
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map with Logo and Check In Button</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .map {
+            height: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .check-in-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .check-in-button:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Circle Logo -->
+        <div class="logo">Logo</div>
+
+        <!-- Interactive Map -->
+        <div id="map" class="map"></div>
+
+        <!-- Check In Button -->
+        <button id="checkInButton" class="check-in-button">Check In</button>
+    </div>
+
+    <!-- Google Maps API Script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+    <script>
+        // Initialize the map
+        function initMap() {
+            const mapOptions = {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8,
+            };
+            const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        }
+
+        // Handle the Check In button click event
+        document.getElementById('checkInButton').addEventListener('click', () => {
+            alert('You have checked in!');
+        });
+
+        // Load the map when the page loads
+        window.onload = initMap;
+    </script>
 </body>
 </html>
