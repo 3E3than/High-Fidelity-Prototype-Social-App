@@ -22,17 +22,45 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        .btn {
-            display: block;
-            width: 200px;
-            margin: 20px auto;
-            padding: 10px;
-            text-align: center;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin: 0 10px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
             cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #007BFF;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
         }
         .profile {
             display: flex;
@@ -43,6 +71,7 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             flex-wrap: wrap;
+            cursor: pointer;
         }
         .profile img {
             border-radius: 50%;
@@ -80,69 +109,106 @@
                 margin-right: 0;
                 margin-bottom: 10px;
             }
-            .heart {
-                cursor: pointer;
-                font-size: 24px;
-                color: #ccc;
-                transition: color 0.3s;
-            }
-            .heart.filled {
-                color: red;
-            }
+        }
+        .switch-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+        .popup img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .popup h2 {
+            margin-bottom: 10px;
+        }
+        .popup p {
+            margin-bottom: 20px;
+        }
+        .popup .close-btn {
+            display: inline-block;
+            background: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>List of Users</h1>
-        <button class="btn" onclick="toggleFriendMode()">Friend Mode</button>
+        <div class="switch-container">
+            <label>Friend Mode</label>
+            <label class="switch">
+                <input type="checkbox" id="friendModeToggle" onclick="toggleFriendMode()">
+                <span class="slider"></span>
+            </label>
+        </div>
         
         <div class="initial-profiles active">
-            <div class="profile">
+            <div class="profile" data-name="User Name" data-description="This is a detailed description of the user. It gives a comprehensive overview of who they are and what they do." data-img="https://via.placeholder.com/150">
                 <img src="https://via.placeholder.com/100" alt="User Photo">
                 <div class="profile-description">
                     <h2>User Name</h2>
                     <p>This is a short description of the user. It gives a brief overview of who they are and what they do.</p>
                 </div>
-                <span class="heart" onclick="toggleHeart(this)">&#9825;</span>
+                <span class="heart" onclick="toggleHeart(event)">&#9825;</span>
             </div>
-            <div class="profile">
+            <div class="profile" data-name="Another User" data-description="This is another detailed description of a different user. It provides similar comprehensive information as the previous profile." data-img="https://via.placeholder.com/150">
                 <img src="https://via.placeholder.com/100" alt="User Photo">
                 <div class="profile-description">
-                    <h2>User Name</h2>
+                    <h2>Another User</h2>
                     <p>This is another description of a different user. It provides similar information as the previous profile.</p>
                 </div>
-                <span class="heart" onclick="toggleHeart(this)">&#9825;</span>
+                <span class="heart" onclick="toggleHeart(event)">&#9825;</span>
             </div>
         </div>
         
         <div class="friend-mode">
-            <div class="profile">
+            <div class="profile" data-name="Friend User" data-description="This is a detailed description of a friend user in friend mode." data-img="https://via.placeholder.com/150">
                 <img src="https://via.placeholder.com/100" alt="User Photo">
                 <div class="profile-description">
-                    <h2>User Name</h2>
+                    <h2>Friend User</h2>
                     <p>This is a description of another user in friend mode.</p>
                 </div>
-                <span class="heart" onclick="toggleHeart(this)">&#9825;</span>
+                <span class="heart" onclick="toggleHeart(event)">&#9825;</span>
             </div>
-            <div class="profile">
+            <div class="profile" data-name="Another Friend User" data-description="This is a detailed description of another friend user in friend mode." data-img="https://via.placeholder.com/150">
                 <img src="https://via.placeholder.com/100" alt="User Photo">
                 <div class="profile-description">
-                    <h2>User Name</h2>
+                    <h2>Another Friend User</h2>
                     <p>This is a description of another user in friend mode.</p>
                 </div>
-                <span class="heart" onclick="toggleHeart(this)">&#9825;</span>
-            </div>
-            <div class="profile">
-                <img src="https://via.placeholder.com/100" alt="User Photo">
-                <div class="profile-description">
-                    <h2>User Name</h2>
-                    <p>This is a description of another user in friend mode.</p>
-                </div>
-                <span class="heart" onclick="toggleHeart(this)">&#9825;</span>
+                <span class="heart" onclick="toggleHeart(event)">&#9825;</span>
             </div>
         </div>
     </div>
+
+    <div class="popup" id="popup">
+        <img id="popupImg" src="" alt="User Photo">
+        <h2 id="popupName"></h2>
+        <p id="popupDescription"></p>
+        <span class="heart" id="popupHeart" onclick="togglePopupHeart(event)">&#9825;</span>
+        <div class="close-btn" onclick="closePopup()">Close</div>
+    </div>
+
     <script>
         function toggleFriendMode() {
             const initialProfilesDiv = document.querySelector('.initial-profiles');
@@ -156,9 +222,49 @@
             }
         }
         
-        function toggleHeart(element) {
+        function toggleHeart(event) {
+            event.stopPropagation(); // Prevent the click event from propagating to the profile click event
+            const element = event.target;
             element.classList.toggle('filled');
         }
+        
+        function openPopup(profile) {
+            const popup = document.getElementById('popup');
+            const popupImg = document.getElementById('popupImg');
+            const popupName = document.getElementById('popupName');
+            const popupDescription = document.getElementById('popupDescription');
+            const popupHeart = document.getElementById('popupHeart');
+            
+            popupImg.src = profile.getAttribute('data-img');
+            popupName.textContent = profile.getAttribute('data-name');
+            popupDescription.textContent = profile.getAttribute('data-description');
+            
+            // Set the heart state in the popup based on the profile's heart state
+            const heart = profile.querySelector('.heart');
+            if (heart.classList.contains('filled')) {
+                popupHeart.classList.add('filled');
+            } else {
+                popupHeart.classList.remove('filled');
+            }
+            
+            popupHeart.dataset.profileIndex = Array.from(profile.parentElement.children).indexOf(profile);
+            popup.style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function togglePopupHeart(event) {
+            toggleHeart(event);
+            const profileIndex = event.target.dataset.profileIndex;
+            const profile = document.querySelectorAll('.profile')[profileIndex];
+            profile.querySelector('.heart').classList.toggle('filled', event.target.classList.contains('filled'));
+        }
+
+        document.querySelectorAll('.profile').forEach(profile => {
+            profile.addEventListener('click', () => openPopup(profile));
+        });
     </script>
 </body>
 </html>
