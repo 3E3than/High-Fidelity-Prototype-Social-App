@@ -1,0 +1,40 @@
+package com.example.demo;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Arrays;
+import java.util.List;
+
+@Controller
+public class MatchController {
+
+    @GetMapping("/matches")
+    public String getMatches(Model model) {
+        List<UserMatch> matches = Arrays.asList(
+                new UserMatch("Alice", "https://via.placeholder.com/150"),
+                new UserMatch("Bob", "https://via.placeholder.com/150")
+        );
+        model.addAttribute("matches", matches);
+        return "matches";
+    }
+
+    static class UserMatch {
+        private String name;
+        private String profilePhotoUrl;
+
+        public UserMatch(String name, String profilePhotoUrl) {
+            this.name = name;
+            this.profilePhotoUrl = profilePhotoUrl;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getProfilePhotoUrl() {
+            return profilePhotoUrl;
+        }
+    }
+}
