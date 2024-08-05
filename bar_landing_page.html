@@ -1,149 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .circle {
-            width: 50px;
-            height: 50px;
-            /* border: red; */
-            background-color: #333;
-            border-radius: 25px;
-        }
-
-        .filterbtn {
-            background-color: #04AA6D;
-            color: white;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .filterbtn:hover,
-        .filterbtn:focus {
-            background-color: #3e8e41;
-        }
-
-        #myInput {
-            box-sizing: border-box;
-            background-image: url('searchicon.png');
-            background-position: 14px 12px;
-            background-repeat: no-repeat;
-            font-size: 16px;
-            padding: 14px 20px 12px 45px;
-            border: none;
-            border-bottom: 1px solid #ddd;
-        }
-
-        #myInput:focus {
-            outline: 3px solid #ddd;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .filter-content {
-            display: none;
-            position: absolute;
-            background-color: #f6f6f6;
-            min-width: 230px;
-            overflow: auto;
-            border: 1px solid #ddd;
-            z-index: 1;
-        }
-
-        .filter-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .filter-struct a:hover {
-            background-color: #ddd;
-        }
-
-        .show {
-            display: block;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="globe">
-        optional for now but just need to link to a map
-     </div>
-
-    <div class="menu">
-         need the menu page to be linked here-->
-    <!-- </div> -->
-
-    <!-- <div class="bar-search">
-        <input type="text" placeholder="Search Bars">
-        <button type="submit">Submit</i></button>
-    </div>
-
-    <div class="filter-struct">
-        <div class="filter">
-        <button onclick="myFunction()" class="filterbtn">filter</button>
-        <div id="myDropdown" class="filter-content">
-            <input id="myInput" onkeyup="filterFunction()">
-            <a>atmosphere</a>
-            <a>music</a>
-            <a>drinks</a>
-        </div>
-    </div>
-
-    <div class="top-three">
-        <div class="top-middle">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-        </div>
-    </div>
-
-    <div class="all-bars">
-        <div>bar 1</div><br>
-        <div>bar 2</div><br>
-        <div>bar 3</div><br>
-        <div>bar 4</div><br>
-        <div>bar 5</div><br>
-        <div>bar 6</div><br>
-        <div>bar 7</div><br>
-    </div> -->
-
-<!-- </body> -->
-<!-- </body> -->
-<!-- <script> -->
-   <!-- // function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    // function filterFunction() {
-    //     // const input = document.getElementById("myInput");
-    //     // const filter = input.value.toUpperCase();
-    //     const div = document.getElementById("myDropdown");
-    //     const a = div.getElementsByTagName("a");
-    //     for (let i = 0; i < a.length; i++) {
-    //         ///txtValue = a[i].textContent || a[i].innerText;
-    //         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-    //             a[i].style.display = "";
-    //         } else {
-    //             a[i].style.display = "none";
-    //         }
-    //     }
-    // } -->
-<!-- </script> -->
-
-<!-- </html>  -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -151,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bar Finder</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -166,13 +19,54 @@
             padding: 20px;
         }
 
-        header {
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        .topbar .title {
+            flex-grow: 1;
             text-align: center;
+        }
+
+        .menu-button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-content {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .menu-content a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .menu-content a:hover {
+            background-color: #f4f4f4;
         }
 
         .search-bar {
             margin-bottom: 20px;
             position: relative;
+            text-align: center;
         }
 
         #search-input {
@@ -247,144 +141,131 @@
 </head>
 
 <body>
+    <div class="topbar">
+        <div class="title">Over Drinks</div>
+        <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+        <div class="menu-content" id="menuContent">
+            <a href="bar_landing_page.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="settings.html">Settings</a>
+            <a href="mission.html">Mission</a>
+            <a href="faq.html">FAQs</a>
+        </div>
+    </div>
     <div class="container">
-        <header>
-            <h1>Over Drinks</h1>
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search Bars...">
-                <button id="search-button">Search</button>
-                <div class="filter-container">
-                    <button id="filter-button">Filter</button>
-                    <div id="filter-menu" class="filter-menu">
-                        <!-- <label for="filter-options">Filter by: -->
-                        <select id="filter-options">
-                            <option value="">Filter by:</option>
-                            <option value="atmosphere">Atmosphere</option>
-                            <option value="music">Music</option>
-                            <option value="drinks">Drinks</option>
-                            <option value="people">People</option>
-                        </select>
-                        <!-- </label> -->
-                        <div id="filter-values" class="filter-values">
-                            <!-- Filter values will be dynamically inserted here -->
-                        </div>
-                    </div>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search Bars...">
+            <button id="search-button">Search</button>
+            <div class="filter-container">
+                <button id="filter-button">Filter</button>
+                <div id="filter-menu" class="filter-menu">
+                    <select id="filter-options">
+                        <option value="">Filter by:</option>
+                        <option value="atmosphere">Atmosphere</option>
+                        <option value="music">Music</option>
+                        <option value="drinks">Drinks</option>
+                        <option value="people">People</option>
+                    </select>
+                    <div id="filter-values" class="filter-values"></div>
                 </div>
             </div>
-        </header>
-        <section class="bar-list" id="bar-list">
-            <!-- List of bars will be dynamically inserted here -->
-        </section>
+        </div>
+        <section class="bar-list" id="bar-list"></section>
     </div>
-    <script src="script.js"></script>
-</body>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const bars = [
-            { pplCount : '45', name: 'Bar 1', logo: "pic"},
-            //atmosphere: 'Casual', music: 'Jazz', drinks: 'Cocktails', people: 'Friends' },
-            { pplCount : '100', name: 'Bar 2', logo: "pic"},
-            //atmosphere: 'Elegant', music: 'Rock', drinks: 'Beer', people: 'Singles' },
-            { pplCount : '20', name: 'Bar 3', logo: "pic"},
-            //atmosphere: 'Lively', music: 'Pop', drinks: 'Wine', people: 'Groups' },
-            { pplCount : '13', name: 'Bar 4', logo: "pic"},
-            // atmosphere: 'Relaxed', music: 'Acoustic', drinks: 'Whiskey', people: 'Couples' },
-            // Add more bars as needed
-            { pplCount : '2', name: 'Bar 5', logo: "pic"},
-            //atmosphere: 'Casual', music: 'Jazz', drinks: 'Cocktails', people: 'Friends' },
-            { pplCount : '17', name: 'Bar 6', logo: "pic"},
-            //atmosphere: 'Elegant', music: 'Rock', drinks: 'Beer', people: 'Singles' },
-            { pplCount : '165', name: 'Bar 7', logo: "pic"},
-            //atmosphere: 'Lively', music: 'Pop', drinks: 'Wine', people: 'Groups' },
-            { pplCount : '55', name: 'Bar 8', logo: "pic"},
-            //atmosphere: 'Relaxed', music: 'Acoustic', drinks: 'Whiskey', people: 'Couples' },
-            { pplCount : '1', name: 'Bar 9', logo: "pic"},
-            //atmosphere: 'Casual', music: 'Jazz', drinks: 'Cocktails', people: 'Friends' },
-            { pplCount : '0',name: 'Bar 10', logo: "pic"},
-            //atmosphere: 'Elegant', music: 'Rock', drinks: 'Beer', people: 'Singles' },
-        ];
+    <script>
+        function toggleMenu() {
+            const menuContent = document.getElementById('menuContent');
+            menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+        }
 
-        const barList = document.getElementById('bar-list');
-        const searchInput = document.getElementById('search-input');
-        const searchButton = document.getElementById('search-button');
-        const filterButton = document.getElementById('filter-button');
-        const filterMenu = document.getElementById('filter-menu');
-        const filterOptions = document.getElementById('filter-options');
-        const filterValues = document.getElementById('filter-values');
+        document.addEventListener('DOMContentLoaded', function () {
+            const bars = [
+                { pplCount: '45', name: 'Bar 1', logo: "pic" },
+                { pplCount: '100', name: 'Bar 2', logo: "pic" },
+                { pplCount: '20', name: 'Bar 3', logo: "pic" },
+                { pplCount: '13', name: 'Bar 4', logo: "pic" },
+                { pplCount: '2', name: 'Bar 5', logo: "pic" },
+                { pplCount: '17', name: 'Bar 6', logo: "pic" },
+                { pplCount: '165', name: 'Bar 7', logo: "pic" },
+                { pplCount: '55', name: 'Bar 8', logo: "pic" },
+                { pplCount: '1', name: 'Bar 9', logo: "pic" },
+                { pplCount: '0', name: 'Bar 10', logo: "pic" }
+            ];
 
-        const filters = {
-            atmosphere: ['Casual', 'Elegant', 'Lively', 'Relaxed'],
-            music: ['Jazz', 'Rock', 'Pop', 'Acoustic'],
-            drinks: ['Cocktails', 'Beer', 'Wine', 'Whiskey'],
-            people: ['Friends', 'Singles', 'Groups', 'Couples'],
-            logo: ['pic'],
-            pplCount: ['45', '100', '20', '13', '2', '17', '165', '55', '1', '0']
-        };
+            const barList = document.getElementById('bar-list');
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+            const filterButton = document.getElementById('filter-button');
+            const filterMenu = document.getElementById('filter-menu');
+            const filterOptions = document.getElementById('filter-options');
+            const filterValues = document.getElementById('filter-values');
 
-        function displayBars(barsToDisplay) {
-            barList.innerHTML = '';
-            barsToDisplay.forEach(bar => {
-                const barItem = document.createElement('div');
-                barItem.className = 'bar-item';
-                barItem.innerHTML = `
-                <h2>${bar.name}</h2>
-                <p><strong>pplCount:</strong> ${bar.pplCount}</p>
-                <p><strong>logo:</strong> ${bar.logo}</p>
-                
-            `;
-                barList.appendChild(barItem);
+            const filters = {
+                atmosphere: ['Casual', 'Elegant', 'Lively', 'Relaxed'],
+                music: ['Jazz', 'Rock', 'Pop', 'Acoustic'],
+                drinks: ['Cocktails', 'Beer', 'Wine', 'Whiskey'],
+                people: ['Friends', 'Singles', 'Groups', 'Couples'],
+                logo: ['pic'],
+                pplCount: ['45', '100', '20', '13', '2', '17', '165', '55', '1', '0']
+            };
+
+            function displayBars(barsToDisplay) {
+                barList.innerHTML = '';
+                barsToDisplay.forEach(bar => {
+                    const barItem = document.createElement('div');
+                    barItem.className = 'bar-item';
+                    barItem.innerHTML = `
+                        <h2>${bar.name}</h2>
+                        <p><strong>People Count:</strong> ${bar.pplCount}</p>
+                        <p><strong>Logo:</strong> ${bar.logo}</p>
+                    `;
+                    barList.appendChild(barItem);
+                });
+            }
+
+            function filterBars() {
+                const selectedOption = filterOptions.value;
+                const selectedValue = filterValues.querySelector('select')?.value;
+
+                const filteredBars = bars.filter(bar => {
+                    return !selectedOption || !selectedValue || bar[selectedOption] === selectedValue;
+                });
+                displayBars(filteredBars);
+            }
+
+            function populateFilterValues(option) {
+                const values = filters[option] || [];
+                filterValues.innerHTML = `
+                    <label for="filter-value">Select ${option}:
+                        <select id="filter-value">
+                            <option value="">All</option>
+                            ${values.map(value => `<option value="${value}">${value}</option>`).join('')}
+                        </select>
+                    </label>
+                `;
+                filterValues.style.display = 'block';
+            }
+
+            searchButton.addEventListener('click', () => {
+                const query = searchInput.value.toLowerCase();
+                const filteredBars = bars.filter(bar => bar.name.toLowerCase().includes(query));
+                displayBars(filteredBars);
             });
-        }
 
-        //bro for func above
-        //<p><strong>Atmosphere:</strong> ${bar.atmosphere}</p>
-        // <p><strong>Music:</strong> ${bar.music}</p>
-        //         <p><strong>Drinks:</strong> ${bar.drinks}</p>
-        //         <p><strong>People:</strong> ${bar.people}</p>
-
-        function filterBars() {
-            const selectedOption = filterOptions.value;
-            const selectedValue = filterValues.querySelector('select')?.value;
-
-            const filteredBars = bars.filter(bar => {
-                return !selectedOption || !selectedValue || bar[selectedOption] === selectedValue;
+            filterButton.addEventListener('click', () => {
+                filterMenu.style.display = filterMenu.style.display === 'block' ? 'none' : 'block';
             });
-            displayBars(filteredBars);
-        }
 
-        function populateFilterValues(option) {
-            const values = filters[option] || [];
-            filterValues.innerHTML = `
-            <label for="filter-value">Select ${option}:
-                <select id="filter-value">
-                    <option value="">All</option>
-                    ${values.map(value => `<option value="${value}">${value}</option>`).join('')}
-                </select>
-            </label>
-        `;
-            filterValues.style.display = 'block';
-        }
+            filterOptions.addEventListener('change', (event) => {
+                const selectedOption = event.target.value;
+                populateFilterValues(selectedOption);
+            });
 
-        searchButton.addEventListener('click', () => {
-            const query = searchInput.value.toLowerCase();
-            const filteredBars = bars.filter(bar => bar.name.toLowerCase().includes(query));
-            displayBars(filteredBars);
-        });
+            filterValues.addEventListener('change', filterBars);
 
-        filterButton.addEventListener('click', () => {
-            filterMenu.style.display = filterMenu.style.display === 'block' ? 'none' : 'block';
-        });
-
-        filterOptions.addEventListener('change', (event) => {
-            const selectedOption = event.target.value;
-            populateFilterValues(selectedOption);
-        });
-
-        filterValues.addEventListener('change', filterBars);
-
-        document.addEventListener('click', (event) => {
-            if (!filterButton.contains(event.target) && !filterMenu.contains(event.target)) {
-                filterMenu.style.display = 'none';
+            document.addEventListener('click', (event) => {
+                if (!filterButton.contains(event.target) && !filterMenu.contains(event.target)) {
+                    filterMenu.style.display = 'none';
             }
         });
 
