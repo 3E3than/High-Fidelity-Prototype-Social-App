@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Matches</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 80px 20px 20px; /* Adjust padding to accommodate fixed header */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+            cursor: pointer;
+        }
+        .profile img {
+            border-radius: 50%;
+            margin-right: 20px;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .profile-description {
+            flex: 1;
+            max-width: 800px;
+        }
+        .invite-btn {
+            cursor: pointer;
+            font-size: 18px;
+            color: #007BFF;
+            border: none;
+            background: none;
+            transition: color 0.3s;
+        }
+        .invite-btn:hover {
+            color: #0056b3;
+        }
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .profile img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+        .popup img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .popup h2 {
+            margin-bottom: 10px;
+        }
+        .popup p {
+            margin-bottom: 20px;
+        }
+        .popup .close-btn {
+            display: inline-block;
+            background: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <button class="back-button" onclick="history.back()">&lt;</button>
+    <h1>Matches</h1>
+    <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+    <div class="menu-content" id="menuContent">
+        <a href="home.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="settings.html">Settings</a>
+        <a href="faq.html">FAQs</a>
+        <a href="mission.html">Mission</a>
+    </div>
+</header>
+
+<div class="container">
+    <div class="profile" data-name="User Name" data-description="This is a detailed description of the user. It gives a comprehensive overview of who they are and what they do." data-img="https://via.placeholder.com/150">
+        <img src="https://via.placeholder.com/100" alt="User Photo">
+        <div class="profile-description">
+            <h2>User Name</h2>
+            <p>This is a short description of the user. It gives a brief overview of who they are and what they do.</p>
+        </div>
+        <button class="invite-btn" onclick="navigateToEndingPage(event)">Invite</button>
+    </div>
+    <div class="profile" data-name="Another User" data-description="This is another detailed description of a different user. It provides similar comprehensive information as the previous profile." data-img="https://via.placeholder.com/150">
+        <img src="https://via.placeholder.com/100" alt="User Photo">
+        <div class="profile-description">
+            <h2>Another User</h2>
+            <p>This is another description of a different user. It provides similar information as the previous profile.</p>
+        </div>
+        <button class="invite-btn" onclick="navigateToEndingPage(event)">Invite</button>
+    </div>
+</div>
+
+<div class="popup" id="popup">
+    <img id="popupImg" src="" alt="User Photo">
+    <h2 id="popupName"></h2>
+    <p id="popupDescription"></p>
+    <button class="invite-btn" id="popupInvite" onclick="navigateToEndingPage(event)">Invite</button>
+    <div class="close-btn" onclick="closePopup()">Close</div>
+</div>
+
+<script>
+    function navigateToEndingPage(event) {
+        event.stopPropagation(); // Prevent the click event from propagating to the profile click event
+        window.location.href = 'EndingPage.html';
+    }
+
+    function openPopup(profile) {
+        const popup = document.getElementById('popup');
+        const popupImg = document.getElementById('popupImg');
+        const popupName = document.getElementById('popupName');
+        const popupDescription = document.getElementById('popupDescription');
+        const popupInvite = document.getElementById('popupInvite');
+        
+        popupImg.src = profile.getAttribute('data-img');
+        popupName.textContent = profile.getAttribute('data-name');
+        popupDescription.textContent = profile.getAttribute('data-description');
+        
+        popup.style.display = 'block';
+    }
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+
+    document.querySelectorAll('.profile').forEach(profile => {
+        profile.addEventListener('click', () => openPopup(profile));
+    });
+
+    function toggleMenu() {
+        const menuContent = document.getElementById('menuContent');
+        menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+</body>
+</html>
