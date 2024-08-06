@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            height: calc(100vh - 60px);
+            margin-top: 60px;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .card {
+            margin: 0 auto;
+        }
+
+        .settings-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .settings-option h5 {
+            margin: 0;
+        }
+
+        .switch-icon {
+            width: 40px;
+            height: 24px;
+            background-color: #ddd;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .switch-icon::after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: left 0.3s;
+        }
+
+        .switch-on {
+            background-color: #007bff;
+        }
+
+        .switch-on::after {
+            left: 18px;
+        }
+
+        .logout-button {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .blacklist-content {
+            display: none;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            height: calc(100vh - 120px); /* Adjusted for topbar and bottom button */
+            overflow-y: auto;
+            position: relative;
+            top: 60px; /* Adjusted to not be covered by topbar */
+        }
+
+        .user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .blacklist-switch-icon {
+            width: 20px;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 4px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <button class="back-button" id="backButton" onclick="handleBackButton()">&lt;</button>
+        <h1 id="pageTitle">Settings</h1>
+        <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+        <div class="menu-content" id="menuContent">
+            <a href="home.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="settings.html">Settings</a>
+            <a href="faq.html">FAQs</a>
+            <a href="mission.html">Mission</a>
+        </div>
+    </header>
+    <div class="container" id="mainContent">
+        <div class="card">
+            <div class="card-body">
+                <div class="settings-option" onclick="showBlacklist()">
+                    <h5>Blacklist</h5>
+                    <div class="blacklist-switch-icon">&gt;</div>
+                </div>
+                <div class="settings-option" onclick="toggleSwitch('notificationSwitch')">
+                    <h5>Notifications</h5>
+                    <div class="switch-icon" id="notificationSwitch"></div>
+                </div>
+                <div class="settings-option" onclick="toggleSwitch('darkModeSwitch')">
+                    <h5>Dark Mode</h5>
+                    <div class="switch-icon" id="darkModeSwitch"></div>
+                </div>
+                <button class="logout-button" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+    <div class="blacklist-content" id="blacklistContent">
+        <!-- Example blocked users -->
+        <div class="user-item">
+            <h5>User 1</h5>
+            <button class="btn btn-danger" onclick="unblockUser('User 1')">Unblock</button>
+        </div>
+        <div class="user-item">
+            <h5>User 2</h5>
+            <button class="btn btn-danger" onclick="unblockUser('User 2')">Unblock</button>
+        </div>
+        <!-- Add more users as needed -->
+    </div>
+    <script>
+        let previousPage = '';
+
+        function toggleMenu() {
+            const menuContent = document.getElementById('menuContent');
+            menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function handleBackButton() {
+            if (previousPage === 'settings') {
+                showSettings();
+            } else {
+                history.back();
+            }
+        }
+
+        function showBlacklist() {
+            previousPage = 'settings';
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('blacklistContent').style.display = 'block';
+            document.getElementById('pageTitle').textContent = 'Blacklist';
+            document.getElementById('backButton').style.display = 'inline-block';
+        }
+
+        function showSettings() {
+            previousPage = '';
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('blacklistContent').style.display = 'none';
+            document.getElementById('pageTitle').textContent = 'Settings';
+            document.getElementById('backButton').style.display = 'inline-block';
+        }
+
+        function toggleSwitch(switchId) {
+            const switchElement = document.getElementById(switchId);
+            const isOn = switchElement.classList.toggle('switch-on');
+            localStorage.setItem(switchId, isOn);
+
+            if (switchId === 'darkModeSwitch') {
+                document.body.style.backgroundColor = isOn ? '#333' : '#f4f4f4';
+                document.body.style.color = isOn ? 'white' : 'black';
+            }
+        }
+
+        function unblockUser(username) {
+            // Add your unblock logic here
+            alert(`${username} has been unblocked.`);
+        }
+
+        function logout() {
+            // Redirect to home page on logout
+            window.location.href = "home.html";
+        }
+
+        window.onload = () => {
+            document.getElementById('notificationSwitch').classList.toggle('switch-on', localStorage.getItem('notificationSwitch') === 'true');
+            const isDarkMode = localStorage.getItem('darkModeSwitch') === 'true';
+            document.getElementById('darkModeSwitch').classList.toggle('switch-on', isDarkMode);
+            document.body.style.backgroundColor = isDarkMode ? '#333' : '#f4f4f4';
+            document.body.style.color = isDarkMode ? 'white' : 'black';
+        };
+    </script>
+</body>
+</html>
