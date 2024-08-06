@@ -3,5 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-	
+    <title>Background Image Example</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('background.jpg'); /* Use the relative path to the image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .back-button {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="location.href='UserList.html'">Back</button>
+</body>
+</html>
