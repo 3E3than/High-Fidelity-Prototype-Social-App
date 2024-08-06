@@ -34,7 +34,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Map with Logo and Check In Button</title>
+    <title>Interactive Image with Logo and Check In Button</title>
     <style>
         body {
             margin: 0;
@@ -66,10 +66,13 @@
             font-weight: bold;
         }
 
-        .map {
+        .image {
             height: 400px;
             width: 100%;
             margin-bottom: 20px;
+            background-image: url('your-image-url.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
         }
 
         .check-in-button {
@@ -92,32 +95,23 @@
         <!-- Circle Logo -->
         <div class="logo">Logo</div>
 
-        <!-- Interactive Map -->
-        <div id="map" class="map"></div>
+        <!-- Image instead of Map -->
+        <div class="image"></div>
 
         <!-- Check In Button -->
         <button id="checkInButton" class="check-in-button">Check In</button>
     </div>
 
-    <!-- Google Maps API Script -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
     <script>
-        // Initialize the map
-        function initMap() {
-            const mapOptions = {
-                center: { lat: -34.397, lng: 150.644 },
-                zoom: 8,
-            };
-            const map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        }
-
+        //document.addEventListener('DOMContentLoaded', async function () {
+        //const bars = await fetch ("./bars.json").then(response=>response.json());
+        //const bars = await fetch ("./bars.json").then(response=>response.json());
+        //}
         // Handle the Check In button click event
         document.getElementById('checkInButton').addEventListener('click', () => {
             alert('You have checked in!');
         });
-
-        // Load the map when the page loads
-        window.onload = initMap;
     </script>
 </body>
 </html>
+

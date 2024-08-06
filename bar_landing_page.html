@@ -125,8 +125,16 @@
             background-color: #fff;
             margin-bottom: 10px;
             padding: 15px;
+            display: block;
+            color: black;
+            text-decoration: none;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.5s;
+        }
+        .bar-item:hover{
+            background-color: #eee;
+
         }
 
         .bar-item h2 {
@@ -170,7 +178,9 @@
                 </div>
             </div>
         </div>
-        <section class="bar-list" id="bar-list"></section>
+        <section class="bar-list" id="bar-list">
+
+        </section>
     </div>
     <script>
         function toggleMenu() {
@@ -178,19 +188,8 @@
             menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const bars = [
-                { pplCount: '45', name: 'Bar 1', logo: "pic" },
-                { pplCount: '100', name: 'Bar 2', logo: "pic" },
-                { pplCount: '20', name: 'Bar 3', logo: "pic" },
-                { pplCount: '13', name: 'Bar 4', logo: "pic" },
-                { pplCount: '2', name: 'Bar 5', logo: "pic" },
-                { pplCount: '17', name: 'Bar 6', logo: "pic" },
-                { pplCount: '165', name: 'Bar 7', logo: "pic" },
-                { pplCount: '55', name: 'Bar 8', logo: "pic" },
-                { pplCount: '1', name: 'Bar 9', logo: "pic" },
-                { pplCount: '0', name: 'Bar 10', logo: "pic" }
-            ];
+        document.addEventListener('DOMContentLoaded', async function () {
+            const bars = await fetch ("./bars.json").then(response=>response.json());
 
             const barList = document.getElementById('bar-list');
             const searchInput = document.getElementById('search-input');
@@ -199,6 +198,7 @@
             const filterMenu = document.getElementById('filter-menu');
             const filterOptions = document.getElementById('filter-options');
             const filterValues = document.getElementById('filter-values');
+
 
             const filters = {
                 atmosphere: ['Casual', 'Elegant', 'Lively', 'Relaxed'],
@@ -212,16 +212,21 @@
             function displayBars(barsToDisplay) {
                 barList.innerHTML = '';
                 barsToDisplay.forEach(bar => {
-                    const barItem = document.createElement('div');
+                    const barItem = document.createElement('a');
                     barItem.className = 'bar-item';
+                    barItem.href = `bar_info_page.html?id=${bar.id}`;
                     barItem.innerHTML = `
                         <h2>${bar.name}</h2>
-                        <p><strong>People Count:</strong> ${bar.pplCount}</p>
-                        <p><strong>Logo:</strong> ${bar.logo}</p>
+                        
+                       
+
                     `;
                     barList.appendChild(barItem);
                 });
             }
+            // // <a href="bar_info_page.html?id=${bar.id}">more info</a>
+            // <p><strong>People Count:</strong> ${bar.pplCount}</p>
+            //             <p><strong>Logo:</strong> ${bar.logo}</p>
 
             function filterBars() {
                 const selectedOption = filterOptions.value;
