@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <title>List of Users</title>
     <style>
         body {
@@ -11,65 +12,11 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
         }
         .container {
             max-width: 1200px;
             margin: auto;
-            overflow: hidden;
-            padding: 20px;
-            flex-grow: 1;
-        }
-        .topbar {
-            background-color: orange;
-            color: white;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .topbar .back-button {
-            background-color: transparent;
-            color: white;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .topbar .title {
-            font-size: 24px;
-            flex-grow: 1;
-            text-align: center;
-        }
-        .topbar .menu-button {
-            background-color: transparent;
-            color: white;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .menu-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-            right: 15px;
-            top: 60px;
-        }
-        .menu-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .menu-content a:hover {
-            background-color: #ddd;
-        }
-        .menu-content.show {
-            display: block;
+            padding: 80px 20px 20px; /* Adjust padding to accommodate fixed header */
         }
         h1 {
             text-align: center;
@@ -205,116 +152,137 @@
     </style>
 </head>
 <body>
-    <div class="topbar">
-        <button class="back-button" onclick="history.back()">&lt;</button>
-        <div class="title">List of Users</div>
-        <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
-        <div class="menu-content" id="menuContent">
-            <a href="bar_landing_page.html">Home</a>
-            <a href="profile.html">Profile</a>
-            <a href="settings.html">Settings</a>
-            <a href="mission.html">Mission</a>
-            <a href="faq.html">FAQs</a>
-        </div>
-    </div>
 
-    <div class="container">
-        <div class="switch-container">
-            <label>Friend Mode</label>
-            <label class="switch">
-                <input type="checkbox" id="friendModeToggle" onclick="toggleFriendMode()">
-                <span class="slider"></span>
-            </label>
+<header>
+    <button class="back-button" onclick="history.back()">&lt;</button>
+    <h1>List of Users</h1>
+    <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+    <div class="menu-content" id="menuContent">
+        <a href="home.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="settings.html">Settings</a>
+        <a href="faq.html">FAQs</a>
+        <a href="mission.html">Mission</a>
+    </div>
+</header>
+
+<div class="container">
+    <div class="switch-container">
+        <label>Friend Mode</label>
+        <label class="switch">
+            <input type="checkbox" id="friendModeToggle" onclick="toggleFriendMode()">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+    <div class="initial-profiles active">
+        <div class="profile" data-name="User Name" data-description="This is a detailed description of the user. It gives a comprehensive overview of who they are and what they do." data-img="https://via.placeholder.com/150">
+            <img src="https://via.placeholder.com/100" alt="User Photo">
+            <div class="profile-description">
+                <h2>User Name</h2>
+                <p>This is a short description of the user. It gives a brief overview of who they are and what they do.</p>
+            </div>
+            <span class="heart" onclick="toggleHeart(event)">&#9825;</span>
         </div>
-        
-        <div class="initial-profiles active">
-            <div class="profile" data-name="User Name" data-description="This is a detailed description of the user. It gives a comprehensive overview of who they are and what they do." data-img="https://via.placeholder.com/150">
-                <img src="https://via.placeholder.com/100" alt="User Photo">
-                <div class="profile-description">
-                    <h2>User Name</h2>
-                    <p>This is a short description of the user. It gives a brief overview of who they are and what they do.</p>
-                </div>
-                <span class="heart" onclick="toggleHeart(event)">&#9825;</span>
+        <div class="profile" data-name="Another User" data-description="This is another detailed description of a different user. It provides similar comprehensive information as the previous profile." data-img="https://via.placeholder.com/150">
+            <img src="https://via.placeholder.com/100" alt="User Photo">
+            <div class="profile-description">
+                <h2>Another User</h2>
+                <p>This is another description of a different user. It provides similar information as the previous profile.</p>
             </div>
-            <div class="profile" data-name="Another User" data-description="This is another detailed description of a different user. It provides similar comprehensive information as the previous profile." data-img="https://via.placeholder.com/150">
-                <img src="https://via.placeholder.com/100" alt="User Photo">
-                <div class="profile-description">
-                    <h2>Another User</h2>
-                    <p>This is another description of a different user. It provides similar information as the previous profile.</p>
-                </div>
-                <span class="heart" onclick="toggleHeart(event)">&#9825;</span>
-            </div>
-        </div>
-        
-        <div class="friend-mode">
-            <div class="profile" data-name="Friend User" data-description="This is a detailed description of a friend user in friend mode." data-img="https://via.placeholder.com/150">
-                <img src="https://via.placeholder.com/100" alt="User Photo">
-                <div class="profile-description">
-                    <h2>Friend User</h2>
-                    <p>This is a description of another user in friend mode.</p>
-                </div>
-                <span class="heart" onclick="toggleHeart(event)">&#9825;</span>
-            </div>
-            <div class="profile" data-name="Another Friend User" data-description="This is a detailed description of another friend user in friend mode." data-img="https://via.placeholder.com/150">
-                <img src="https://via.placeholder.com/100" alt="User Photo">
-                <div class="profile-description">
-                    <h2>Another Friend User</h2>
-                    <p>This is a description of another user in friend mode.</p>
-                </div>
-                <span class="heart" onclick="toggleHeart(event)">&#9825;</span>
-            </div>
+            <span class="heart" onclick="toggleHeart(event)">&#9825;</span>
         </div>
     </div>
     
-    <div class="popup" id="profilePopup">
-        <img src="" alt="Profile Photo" id="popupImg">
-        <h2 id="popupName"></h2>
-        <p id="popupDescription"></p>
-        <button class="close-btn" onclick="closePopup()">Close</button>
+    <div class="friend-mode">
+        <div class="profile" data-name="Friend User" data-description="This is a detailed description of a friend user in friend mode." data-img="https://via.placeholder.com/150">
+            <img src="https://via.placeholder.com/100" alt="User Photo">
+            <div class="profile-description">
+                <h2>Friend User</h2>
+                <p>This is a description of another user in friend mode.</p>
+            </div>
+            <span class="heart" onclick="toggleHeart(event)">&#9825;</span>
+        </div>
+        <div class="profile" data-name="Another Friend User" data-description="This is a detailed description of another friend user in friend mode." data-img="https://via.placeholder.com/150">
+            <img src="https://via.placeholder.com/100" alt="User Photo">
+            <div class="profile-description">
+                <h2>Another Friend User</h2>
+                <p>This is a description of another user in friend mode.</p>
+            </div>
+            <span class="heart" onclick="toggleHeart(event)">&#9825;</span>
+        </div>
     </div>
+</div>
+
+<div class="popup" id="popup">
+    <img id="popupImg" src="" alt="User Photo">
+    <h2 id="popupName"></h2>
+    <p id="popupDescription"></p>
+    <span class="heart" id="popupHeart" onclick="togglePopupHeart(event)">&#9825;</span>
+    <div class="close-btn" onclick="closePopup()">Close</div>
+</div>
+
+<script>
+    function toggleFriendMode() {
+        const initialProfilesDiv = document.querySelector('.initial-profiles');
+        const friendModeDiv = document.querySelector('.friend-mode');
+        if (initialProfilesDiv.classList.contains('active')) {
+            initialProfilesDiv.classList.remove('active');
+            friendModeDiv.classList.add('active');
+        } else {
+            initialProfilesDiv.classList.add('active');
+            friendModeDiv.classList.remove('active');
+        }
+    }
     
-    <script>
-        function toggleMenu() {
-            var menuContent = document.getElementById('menuContent');
-            menuContent.classList.toggle('show');
+    function toggleHeart(event) {
+        event.stopPropagation(); // Prevent the click event from propagating to the profile click event
+        const element = event.target;
+        element.classList.toggle('filled');
+    }
+    
+    function openPopup(profile) {
+        const popup = document.getElementById('popup');
+        const popupImg = document.getElementById('popupImg');
+        const popupName = document.getElementById('popupName');
+        const popupDescription = document.getElementById('popupDescription');
+        const popupHeart = document.getElementById('popupHeart');
+        
+        popupImg.src = profile.getAttribute('data-img');
+        popupName.textContent = profile.getAttribute('data-name');
+        popupDescription.textContent = profile.getAttribute('data-description');
+        
+        // Set the heart state in the popup based on the profile's heart state
+        const heart = profile.querySelector('.heart');
+        if (heart.classList.contains('filled')) {
+            popupHeart.classList.add('filled');
+        } else {
+            popupHeart.classList.remove('filled');
         }
+        
+        popupHeart.dataset.profileIndex = Array.from(profile.parentElement.children).indexOf(profile);
+        popup.style.display = 'block';
+    }
 
-        function toggleHeart(event) {
-            var heart = event.target;
-            heart.classList.toggle('filled');
-        }
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
 
-        function toggleFriendMode() {
-            var initialProfiles = document.querySelector('.initial-profiles');
-            var friendModeProfiles = document.querySelector('.friend-mode');
-            var friendModeToggle = document.getElementById('friendModeToggle');
-            
-            if (friendModeToggle.checked) {
-                initialProfiles.classList.remove('active');
-                friendModeProfiles.classList.add('active');
-            } else {
-                friendModeProfiles.classList.remove('active');
-                initialProfiles.classList.add('active');
-            }
-        }
+    function togglePopupHeart(event) {
+        toggleHeart(event);
+        const profileIndex = event.target.dataset.profileIndex;
+        const profile = document.querySelectorAll('.profile')[profileIndex];
+        profile.querySelector('.heart').classList.toggle('filled', event.target.classList.contains('filled'));
+    }
 
-        document.querySelectorAll('.profile').forEach(profile => {
-            profile.addEventListener('click', function () {
-                var name = this.getAttribute('data-name');
-                var description = this.getAttribute('data-description');
-                var img = this.getAttribute('data-img');
-                
-                document.getElementById('popupName').innerText = name;
-                document.getElementById('popupDescription').innerText = description;
-                document.getElementById('popupImg').src = img;
-                
-                document.getElementById('profilePopup').style.display = 'block';
-            });
-        });
+    document.querySelectorAll('.profile').forEach(profile => {
+        profile.addEventListener('click', () => openPopup(profile));
+    });
 
-        function closePopup() {
-            document.getElementById('profilePopup').style.display = 'none';
-        }
-    </script>
+    function toggleMenu() {
+        const menuContent = document.getElementById('menuContent');
+        menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
 </body>
 </html>
