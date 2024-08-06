@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    
     <title>List of Users</title>
     <style>
         body {
@@ -15,13 +14,6 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-        }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
-            flex-grow: 1;
         }
         .topbar {
             background-color: #333333;
@@ -72,9 +64,18 @@
         .menu-content.show {
             display: block;
         }
-        h1 {
+        .matches-container {
             text-align: center;
-            margin-bottom: 20px;
+            margin: 20px 0;
+        }
+        .matches-button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
         }
         .switch {
             position: relative;
@@ -210,13 +211,10 @@
         <button class="back-button" onclick="history.back()">&lt;</button>
         <div class="title">List of Users</div>
         <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
-        <div class="menu-content" id="menuContent">
-            <a href="bar_landing_page.html">Home</a>
-            <a href="profile.html">Profile</a>
-            <a href="settings.html">Settings</a>
-            <a href="mission.html">Mission</a>
-            <a href="faq.html">FAQs</a>
-        </div>
+    </div>
+
+    <div class="matches-container">
+        <button class="matches-button" onclick="window.location.href='MatchesList.html'">Matches</button>
     </div>
 
     <div class="container">
