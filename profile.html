@@ -135,8 +135,7 @@
         <hr />
         <h5 class="card-title">My Interests</h5>
         <textarea id="interests-input" class="form-control" rows="3" placeholder="Enter your interests here"></textarea>
-        <button id="save-interests" class="btn btn-primary mt-2">Save Interests</button>
-        <button id="go-to-bars" class="btn btn-secondary mt-2">Go to Bar List</button>
+        <button id="save-interests" class="btn btn-primary mt-2">Save</button>
       </div>
     </div>
 
@@ -240,10 +239,6 @@
     document.getElementById("save-interests").onclick = () => {
       const interests = document.getElementById("interests-input").value;
       localStorage.setItem("profileInterests", interests);
-    };
-
-    document.getElementById("go-to-bars").onclick = () => {
-      window.location.href = "bars.html";
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
