@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #333;
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .topbar .title {
+      font-size: 24px;
+    }
+
+    .menu-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .menu-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #333;
+      width: 200px;
+    }
+
+    .menu-content a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+    }
+
+    .menu-content a:hover {
+      background-color: #575757;
+    }
+
+    .container {
+      width: 100%;
+      height: calc(100vh - 60px);
+      margin-top: 60px;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    .card {
+      margin: 0 auto;
+    }
+
+    .profile-name-input {
+      margin-bottom: 16px;
+    }
+
+    .profile-card {
+      max-width: 400px;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: center;
+    }
+
+    #profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 6px;
+      margin: 12px auto;
+      display: block;
+    }
+
+    #video {
+      width: 100%;
+      background-color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <button class="menu-button" onclick="history.back()">&#8592;</button>
+    <div class="title">Profile</div>
+    <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+    <div class="menu-content" id="menuContent">
+      <a href="bar_landing_page.html">Home</a>
+      <a href="profile.html">Profile</a>
+      <a href="settings.html">Settings</a>
+      <a href="mission.html">Mission</a>
+      <a href="faq.html">FAQs</a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="card profile-card">
+      <div class="card-body">
+        <h5 class="card-title">My profile</h5>
+        <input id="name-input" type="text" class="form-control profile-name-input" value="User" placeholder="Name"
+          aria-label="Name" />
+        <div role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profilePicModal">
+          <img id="profile-pic" src="../images/profile.svg" />
+        </div>
+        <p class="card-text">Click the picture above to change your profile picture!</p>
+        <hr />
+        <h5 class="card-title">My Interests</h5>
+        <textarea id="interests-input" class="form-control" rows="3" placeholder="Enter your interests here"></textarea>
+        <button id="save-interests" class="btn btn-primary mt-2">Save Interests</button>
+        <button id="go-to-bars" class="btn btn-secondary mt-2">Go to Bar List</button>
+      </div>
+    </div>
+
+    <!-- This is where the popup modal lives. It won't render until the profile pic is clicked. -->
+    <div class="modal fade" id="profilePicModal" tabindex="-1" aria-labelledby="profilePicModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="profilePicModalLabel">Change profile pic</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <label for="profile-pic-file" class="form-label"> Say Cheese! </label>
+            <video id="video" autoplay></video>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="capture-btn">Capture and Set Profile Pic</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function toggleMenu() {
+      const menuContent = document.getElementById('menuContent');
+      menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+    }
+
+    const closeModal = () => {
+      const modal = document.getElementById("profilePicModal");
+      const modalInstance = bootstrap.Modal.getInstance(modal);
+      modalInstance.hide();
+    };
+
+    const resizeAndCropPic = (dataUrl) => {
+      return new Promise((resolve) => {
+        const canvas = document.createElement("canvas");
+        [canvas.width, canvas.height] = [512, 512];
+        const ctx = canvas.getContext("2d");
+
+        const img = new Image();
+        img.src = dataUrl;
+        img.onload = () => {
+          const [width, height] = [img.width, img.height];
+          const [shorter, longer] = width < height ? [width, height] : [height, width];
+          const [x, y] = width < height ? [0, (height - width) / 2] : [(width - height) / 2, 0];
+          ctx.drawImage(img, x, y, shorter, shorter, 0, 0, 512, 512);
+          const croppedDataUrl = canvas.toDataURL("image/jpeg");
+
+          resolve(croppedDataUrl);
+        };
+      });
+    };
+
+    window.onload = () => {
+      const savedName = localStorage.getItem("profileName");
+      const savedPic = localStorage.getItem("profilePic");
+      const savedInterests = localStorage.getItem("profileInterests");
+
+      if (savedName) {
+        document.getElementById("name-input").value = savedName;
+      }
+      if (savedPic) {
+        document.getElementById("profile-pic").src = savedPic;
+      }
+      if (savedInterests) {
+        document.getElementById("interests-input").value = savedInterests;
+      }
+
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+          const video = document.getElementById("video");
+          video.srcObject = stream;
+          video.play();
+        }).catch((err) => {
+          console.error("Error accessing webcam: ", err);
+        });
+      }
+    };
+
+    document.getElementById("name-input").oninput = (event) => {
+      localStorage.setItem("profileName", event.target.value);
+    };
+
+    document.getElementById("capture-btn").onclick = async () => {
+      const video = document.getElementById("video");
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const dataUrl = canvas.toDataURL('image/jpeg');
+
+      const resizedDataUrl = await resizeAndCropPic(dataUrl);
+      localStorage.setItem("profilePic", resizedDataUrl);
+      document.getElementById("profile-pic").src = resizedDataUrl;
+      closeModal();
+    };
+
+    document.getElementById("save-interests").onclick = () => {
+      const interests = document.getElementById("interests-input").value;
+      localStorage.setItem("profileInterests", interests);
+    };
+
+    document.getElementById("go-to-bars").onclick = () => {
+      window.location.href = "bars.html";
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
