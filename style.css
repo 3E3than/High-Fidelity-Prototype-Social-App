@@ -290,7 +290,7 @@ header h1 {
 }
 
 .matches-container, .container {
-    padding-top: 20px;
+    padding-top: 60px;
 }
 
 /* Popup Styles */
@@ -762,4 +762,80 @@ input:checked + .slider:before {
     display: block;
     margin-bottom: 5px;
     color: white; /* Ensure the text is readable */
+}
+
+
+.logo {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    border-radius: 50%;
+    margin: 40px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3498db;
+}
+
+.logo-img img {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+
+.description {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.image {
+    width: 400px;
+    height: 200px;
+    margin-bottom: 20px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.check-in-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.check-in-button:hover {
+    background-color: #27ae60;
+}
+
+.bar-info {
+    display: none;
+    margin-top: 20px;
+    text-align: left;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
