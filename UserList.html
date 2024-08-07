@@ -207,9 +207,16 @@
 </head>
 <body>
     <div class="topbar">
-        <button class="back-button" onclick="history.back()">&lt;</button>
+        <button class="back-button" onclick="window.location.href='bar_info_page.html'">&lt;</button>
         <div class="title">List of Users</div>
         <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+        <div class="menu-content" id="menuContent">
+            <a href="home.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="settings.html">Settings</a>
+            <a href="faq.html">FAQs</a>
+            <a href="mission.html">Mission</a>
+        </div>
     </div>
 
     <div class="matches-container">
@@ -432,7 +439,10 @@
         function closePopup() {
             document.getElementById('profilePopup').style.display = 'none';
         }
-
+        function toggleMenu() {
+        const menuContent = document.getElementById('menuContent');
+        menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+        }
         // Load initial profiles on page load
         loadInitialProfiles();
     </script>
