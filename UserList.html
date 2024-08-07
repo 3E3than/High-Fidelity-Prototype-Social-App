@@ -6,156 +6,6 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>List of Users</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            padding-top: 70px;
-        }
-        .matches-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .matches-button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            font-size: 18px;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-            margin: 0 10px;
-        }
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: #007BFF;
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-        .profile {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #fff;
-            margin-bottom: 20px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            flex-wrap: wrap;
-        }
-        .profile img {
-            border-radius: 50%;
-            margin-right: 20px;
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-        }
-        .profile-description {
-            flex: 1;
-            max-width: 800px;
-        }
-        .heart {
-            cursor: pointer;
-            font-size: 24px;
-            color: #ccc;
-            transition: color 0.3s;
-        }
-        .heart.filled {
-            color: red;
-        }
-        .initial-profiles,
-        .friend-mode {
-            display: none;
-        }
-        .active {
-            display: block;
-        }
-        @media (max-width: 768px) {
-            .profile {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .profile img {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-        }
-        .switch-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: none;
-            width: 80%;
-            max-width: 600px;
-            text-align: center;
-        }
-        .popup img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-        .popup h2 {
-            margin-bottom: 10px;
-        }
-        .popup p {
-            margin-bottom: 20px;
-        }
-        .popup .close-btn {
-            display: inline-block;
-            background: #007BFF;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
 <header>
@@ -168,247 +18,240 @@
         <a href="settings.html">Settings</a>
         <a href="faq.html">FAQs</a>
         <a href="mission.html">Mission</a>
-        
     </div>
 </header>
 
-    <div class="matches-container">
-        <button class="matches-button" onclick="window.location.href='MatchesList.html'">Matches</button>
-    </div>
+<div class="matches-container">
+    <button class="btn-custom matches-button" onclick="window.location.href='MatchesList.html'">Matches</button>
+</div>
 
-    <div class="container">
-        <div class="switch-container">
-            <label>Friend Mode</label>
-            <label class="switch">
-                <input type="checkbox" id="friendModeToggle" onclick="toggleFriendMode()">
-                <span class="slider"></span>
-            </label>
-            <label>AI Recommended</label>
-            <label class="switch">
-                <input type="checkbox" id="aiRecommendationToggle" onclick="toggleAIRecommendation()">
-                <span class="slider"></span>
-            </label>
-        </div>
-        
-        <div class="initial-profiles active" id="profilesContainer">
-            <!-- Profiles will be dynamically loaded here -->
-        </div>
-        
-        <div class="friend-mode" id="friendProfilesContainer">
-            <!-- Friend mode profiles will be dynamically loaded here -->
-        </div>
+<div class="container">
+    <div class="switch-container">
+        <label>Friend Mode</label>
+        <label class="switch">
+            <input type="checkbox" id="friendModeToggle" onclick="toggleFriendMode()">
+            <span class="slider"></span>
+        </label>
+        <label>AI Recommended</label>
+        <label class="switch">
+            <input type="checkbox" id="aiRecommendationToggle" onclick="toggleAIRecommendation()">
+            <span class="slider"></span>
+        </label>
     </div>
     
-    <div class="popup" id="profilePopup">
-        <img src="" alt="Profile Photo" id="popupImg">
-        <h2 id="popupName"></h2>
-        <p id="popupDescription"></p>
-        <button class="close-btn" onclick="closePopup()">Close</button>
+    <div class="initial-profiles active" id="profilesContainer">
+        <!-- Profiles will be dynamically loaded here -->
     </div>
     
-    <script>
-        const currentUserProfile = {
-            name: "Alex",
-            interests: ["Hiking", "Reading", "Cooking"],
-            hobbies: ["Photography", "Traveling"],
-            profession: "Software Engineer"
-        };
+    <div class="friend-mode" id="friendProfilesContainer">
+        <!-- Friend mode profiles will be dynamically loaded here -->
+    </div>
+</div>
+    
+<div class="popup" id="profilePopup">
+    <img src="" alt="Profile Photo" id="popupImg">
+    <h2 id="popupName"></h2>
+    <p id="popupDescription"></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+</div>
+    
+<script>
+    const currentUserProfile = {
+        name: "Alex",
+        interests: ["Hiking", "Reading", "Cooking"],
+        hobbies: ["Photography", "Traveling"],
+        profession: "Software Engineer"
+    };
 
-        const otherUserProfiles = [
-            { name: "Taylor", description: "Enjoys reading and gaming.", interests: ["Reading", "Gaming", "Cooking"], hobbies: ["Writing", "Traveling"], profession: "Writer", img: "Profile1.jpg" },
-            { name: "Jamie", description: "Likes hiking and cooking.", interests: ["Hiking", "Cooking", "Music"], hobbies: ["Traveling", "Painting"], profession: "Graphic Designer", img: "Profile2.jpg" },
-            { name: "Morgan", description: "Travels often and enjoys music.", interests: ["Hiking", "Reading", "Cooking"], hobbies: ["Photography", "Traveling"], profession: "Data Scientist", img: "Profile3.jpg" },
-            { name: "James" , description: "Likes watching movies and running" , interests:["Movies" , "Running" , "Fitness"] , hobbies: ["Star Wars" , "Running"], profession: "Business Analyst" , img: "Profile1.jpg"},
-            { name: "Cameron", description: "Tech enthusiast and coder.", interests: ["Programming", "Gaming", "Music"], hobbies: ["Robotics", "3D Printing"], profession: "Software Developer", img: "Profile1.jpg" },
-            { name: "Charlie", description: "Fitness freak and health coach.", interests: ["Fitness", "Cooking", "Meditation"], hobbies: ["Yoga", "Cycling"], profession: "Personal Trainer", img: "Profile2.jpg" },
-            { name: "Peyton", description: "Creative artist and designer.", interests: ["Painting", "Design", "Photography"], hobbies: ["Sketching", "Traveling"], profession: "Graphic Designer", img: "Profile1.jpg" },
-        ];
+    const otherUserProfiles = [
+        { name: "Taylor", description: "Enjoys reading and gaming.", interests: ["Reading", "Gaming", "Cooking"], hobbies: ["Writing", "Traveling"], profession: "Writer", img: "Profile1.jpg" },
+        { name: "Jamie", description: "Likes hiking and cooking.", interests: ["Hiking", "Cooking", "Music"], hobbies: ["Traveling", "Painting"], profession: "Graphic Designer", img: "Profile2.jpg" },
+        { name: "Morgan", description: "Travels often and enjoys music.", interests: ["Hiking", "Reading", "Cooking"], hobbies: ["Photography", "Traveling"], profession: "Data Scientist", img: "Profile3.jpg" },
+        { name: "James" , description: "Likes watching movies and running" , interests:["Movies" , "Running" , "Fitness"] , hobbies: ["Star Wars" , "Running"], profession: "Business Analyst" , img: "Profile1.jpg"},
+        { name: "Cameron", description: "Tech enthusiast and coder.", interests: ["Programming", "Gaming", "Music"], hobbies: ["Robotics", "3D Printing"], profession: "Software Developer", img: "Profile1.jpg" },
+        { name: "Charlie", description: "Fitness freak and health coach.", interests: ["Fitness", "Cooking", "Meditation"], hobbies: ["Yoga", "Cycling"], profession: "Personal Trainer", img: "Profile2.jpg" },
+        { name: "Peyton", description: "Creative artist and designer.", interests: ["Painting", "Design", "Photography"], hobbies: ["Sketching", "Traveling"], profession: "Graphic Designer", img: "Profile1.jpg" },
+    ];
 
-        const friendUserProfiles = [
-            { name: "Riley", description: "Enjoys photography and music.", interests: ["Photography", "Music", "Cooking"], hobbies: ["Traveling", "Writing"], profession: "Photographer", img: "Profile3.jpg" },
-            { name: "Jordan", description: "Loves painting and hiking.", interests: ["Painting", "Hiking", "Traveling"], hobbies: ["Cooking", "Music"], profession: "Artist", img: "Profile3.jpg" },
-            { name: "Parker", description: "Passionate about traveling and cooking.", interests: ["Traveling", "Cooking", "Music"], hobbies: ["Hiking", "Painting"], profession: "Chef", img: "Profile1.jpg" },
-            { name: "Alexis", description: "Pet lover and volunteer.", interests: ["Animal Rescue", "Reading", "Traveling"], hobbies: ["Dog Walking", "Gardening"], profession: "Veterinarian", img: "Profile3.jpg" },
-            { name: "Finley", description: "Outdoor explorer and trekker.", interests: ["Trekking", "Photography", "Bird Watching"], hobbies: ["Traveling", "Writing"], profession: "Travel Blogger", img: "Profile3.jpg" },
-            { name: "Logan", description: "History buff and museum goer.", interests: ["History", "Museums", "Reading"], hobbies: ["Antiquing", "Genealogy"], profession: "Historian", img: "Profile2.jpg" },
-            { name: "Parker", description: "Techie and gadget lover.", interests: ["Technology", "Gaming", "Music"], hobbies: ["Building PCs", "Drone Flying"], profession: "IT Specialist", img: "Profile2.jpg" }
-        ];
+    const friendUserProfiles = [
+        { name: "Riley", description: "Enjoys photography and music.", interests: ["Photography", "Music", "Cooking"], hobbies: ["Traveling", "Writing"], profession: "Photographer", img: "Profile3.jpg" },
+        { name: "Jordan", description: "Loves painting and hiking.", interests: ["Painting", "Hiking", "Traveling"], hobbies: ["Cooking", "Music"], profession: "Artist", img: "Profile3.jpg" },
+        { name: "Parker", description: "Passionate about traveling and cooking.", interests: ["Traveling", "Cooking", "Music"], hobbies: ["Hiking", "Painting"], profession: "Chef", img: "Profile1.jpg" },
+        { name: "Alexis", description: "Pet lover and volunteer.", interests: ["Animal Rescue", "Reading", "Traveling"], hobbies: ["Dog Walking", "Gardening"], profession: "Veterinarian", img: "Profile3.jpg" },
+        { name: "Finley", description: "Outdoor explorer and trekker.", interests: ["Trekking", "Photography", "Bird Watching"], hobbies: ["Traveling", "Writing"], profession: "Travel Blogger", img: "Profile3.jpg" },
+        { name: "Logan", description: "History buff and museum goer.", interests: ["History", "Museums", "Reading"], hobbies: ["Antiquing", "Genealogy"], profession: "Historian", img: "Profile2.jpg" },
+        { name: "Parker", description: "Techie and gadget lover.", interests: ["Technology", "Gaming", "Music"], hobbies: ["Building PCs", "Drone Flying"], profession: "IT Specialist", img: "Profile2.jpg" }
+    ];
 
-        const heartState = {}; // To track heart icon state
+    const heartState = {}; // To track heart icon state
 
-        function toggleMenu() {
-            var menuContent = document.getElementById('menuContent');
-            menuContent.classList.toggle('show');
+    function toggleMenu() {
+        var menuContent = document.getElementById('menuContent');
+        menuContent.classList.toggle('show');
+    }
+
+    function toggleHeart(event) {
+        event.stopPropagation(); // Prevent popup from appearing
+        const heart = event.target;
+        const profileDiv = heart.parentElement;
+        const profileName = profileDiv.getAttribute('data-name');
+
+        if (!heartState[profileName]) {
+            heartState[profileName] = true;
+            heart.classList.add('filled');
+        } else {
+            heartState[profileName] = false;
+            heart.classList.remove('filled');
+        }
+    }
+
+    function toggleFriendMode() {
+        const initialProfiles = document.querySelector('.initial-profiles');
+        const friendModeProfiles = document.querySelector('.friend-mode');
+        const friendModeToggle = document.getElementById('friendModeToggle');
+        
+        if (friendModeToggle.checked) {
+            initialProfiles.classList.remove('active');
+            friendModeProfiles.classList.add('active');
+            loadFriendProfiles();
+        } else {
+            friendModeProfiles.classList.remove('active');
+            initialProfiles.classList.add('active');
         }
 
-        function toggleHeart(event) {
-            event.stopPropagation(); // Prevent popup from appearing
-            const heart = event.target;
-            const profileDiv = heart.parentElement;
-            const profileName = profileDiv.getAttribute('data-name');
+        // Reapply heart states for the currently visible profiles
+        applyHeartStates();
+    }
 
-            if (!heartState[profileName]) {
-                heartState[profileName] = true;
+    function toggleAIRecommendation() {
+        const aiRecommendationToggle = document.getElementById('aiRecommendationToggle');
+        if (aiRecommendationToggle.checked) {
+            generateSortedProfiles();
+        } else {
+            loadInitialProfiles();
+        }
+    }
+
+    function loadInitialProfiles() {
+        const profilesContainer = document.getElementById('profilesContainer');
+        profilesContainer.innerHTML = '';
+        otherUserProfiles.forEach(profile => {
+            const profileDiv = createProfileDiv(profile);
+            profilesContainer.appendChild(profileDiv);
+        });
+        applyHeartStates();
+    }
+
+    function loadFriendProfiles() {
+        const friendProfilesContainer = document.getElementById('friendProfilesContainer');
+        friendProfilesContainer.innerHTML = '';
+        friendUserProfiles.forEach(profile => {
+            const profileDiv = createProfileDiv(profile);
+            friendProfilesContainer.appendChild(profileDiv);
+        });
+        applyHeartStates();
+    }
+
+    async function generateSortedProfiles() {
+        // Use fetch to call the Noggin API for sorted profiles
+        const response = await fetch(
+          'https://noggin.rea.gent/curved-rabbit-5970',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer rg_v1_4wgriw1jfbod0eub1pnab0dvshzoggz5c8kz_ngk',
+            },
+                body: JSON.stringify({
+                    userProfile: JSON.stringify(currentUserProfile),
+                    otherProfiles: JSON.stringify(otherUserProfiles)
+                }),
+            }
+        );
+
+        const sortedProfiles = await response.json();
+        console.log("Sorted Profiles:", sortedProfiles);
+
+        // Update otherUserProfiles with sorted profiles
+        otherUserProfiles.length = 0;
+        sortedProfiles.forEach(profile => otherUserProfiles.push(profile));
+
+        // Display sorted profiles
+        const profilesContainer = document.getElementById('profilesContainer');
+        profilesContainer.innerHTML = '';
+        sortedProfiles.forEach(profile => {
+            const profileDiv = createProfileDiv(profile);
+            profilesContainer.appendChild(profileDiv);
+        });
+        applyHeartStates();
+    }
+
+    function createProfileDiv(profile) {
+        const profileDiv = document.createElement('div');
+        profileDiv.classList.add('profile');
+        profileDiv.setAttribute('data-name', profile.name);
+        profileDiv.setAttribute('data-description', profile.description);
+        profileDiv.setAttribute('data-img', profile.img);
+
+        const img = document.createElement('img');
+        img.src = profile.img;
+        img.alt = 'User Photo';
+
+        const descriptionDiv = document.createElement('div');
+        descriptionDiv.classList.add('profile-description');
+
+        const name = document.createElement('h2');
+        name.textContent = profile.name;
+
+        const description = document.createElement('p');
+        description.textContent = profile.description;
+
+        descriptionDiv.appendChild(name);
+        descriptionDiv.appendChild(description);
+
+        const heart = document.createElement('span');
+        heart.classList.add('heart');
+        heart.innerHTML = '&#9825;';
+        heart.addEventListener('click', toggleHeart);
+
+        profileDiv.appendChild(img);
+        profileDiv.appendChild(descriptionDiv);
+        profileDiv.appendChild(heart);
+
+        profileDiv.addEventListener('click', function (event) {
+            if (!event.target.classList.contains('heart')) {
+                showPopup(profile);
+            }
+        });
+
+        return profileDiv;
+    }
+
+    function applyHeartStates() {
+        document.querySelectorAll('.profile').forEach(profileDiv => {
+            const profileName = profileDiv.getAttribute('data-name');
+            const heart = profileDiv.querySelector('.heart');
+            if (heartState[profileName]) {
                 heart.classList.add('filled');
             } else {
-                heartState[profileName] = false;
                 heart.classList.remove('filled');
             }
-        }
+        });
+    }
 
-        function toggleFriendMode() {
-            const initialProfiles = document.querySelector('.initial-profiles');
-            const friendModeProfiles = document.querySelector('.friend-mode');
-            const friendModeToggle = document.getElementById('friendModeToggle');
-            
-            if (friendModeToggle.checked) {
-                initialProfiles.classList.remove('active');
-                friendModeProfiles.classList.add('active');
-                loadFriendProfiles();
-            } else {
-                friendModeProfiles.classList.remove('active');
-                initialProfiles.classList.add('active');
-            }
+    function showPopup(profile) {
+        document.getElementById('popupName').innerText = profile.name;
+        document.getElementById('popupDescription').innerText = profile.description;
+        document.getElementById('popupImg').src = profile.img;
+        document.getElementById('profilePopup').style.display = 'block';
+    }
 
-            // Reapply heart states for the currently visible profiles
-            applyHeartStates();
-        }
+    function closePopup() {
+        document.getElementById('profilePopup').style.display = 'none';
+    }
 
-        function toggleAIRecommendation() {
-            const aiRecommendationToggle = document.getElementById('aiRecommendationToggle');
-            if (aiRecommendationToggle.checked) {
-                generateSortedProfiles();
-            } else {
-                loadInitialProfiles();
-            }
-        }
-
-        function loadInitialProfiles() {
-            const profilesContainer = document.getElementById('profilesContainer');
-            profilesContainer.innerHTML = '';
-            otherUserProfiles.forEach(profile => {
-                const profileDiv = createProfileDiv(profile);
-                profilesContainer.appendChild(profileDiv);
-            });
-            applyHeartStates();
-        }
-
-        function loadFriendProfiles() {
-            const friendProfilesContainer = document.getElementById('friendProfilesContainer');
-            friendProfilesContainer.innerHTML = '';
-            friendUserProfiles.forEach(profile => {
-                const profileDiv = createProfileDiv(profile);
-                friendProfilesContainer.appendChild(profileDiv);
-            });
-            applyHeartStates();
-        }
-
-        async function generateSortedProfiles() {
-            // Use fetch to call the Noggin API for sorted profiles
-            const response = await fetch(
-              'https://noggin.rea.gent/curved-rabbit-5970',
-              {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: 'Bearer rg_v1_4wgriw1jfbod0eub1pnab0dvshzoggz5c8kz_ngk',
-                },
-                    body: JSON.stringify({
-                        userProfile: JSON.stringify(currentUserProfile),
-                        otherProfiles: JSON.stringify(otherUserProfiles)
-                    }),
-                }
-            );
-
-            // import fetch from 'node-fetch'; // for node.js
-
-            const sortedProfiles = await response.json();
-            console.log("Sorted Profiles:", sortedProfiles);
-
-            // Update otherUserProfiles with sorted profiles
-            otherUserProfiles.length = 0;
-            sortedProfiles.forEach(profile => otherUserProfiles.push(profile));
-
-            // Display sorted profiles
-            const profilesContainer = document.getElementById('profilesContainer');
-            profilesContainer.innerHTML = '';
-            sortedProfiles.forEach(profile => {
-                const profileDiv = createProfileDiv(profile);
-                profilesContainer.appendChild(profileDiv);
-            });
-            applyHeartStates();
-        }
-
-        function createProfileDiv(profile) {
-            const profileDiv = document.createElement('div');
-            profileDiv.classList.add('profile');
-            profileDiv.setAttribute('data-name', profile.name);
-            profileDiv.setAttribute('data-description', profile.description);
-            profileDiv.setAttribute('data-img', profile.img);
-
-            const img = document.createElement('img');
-            img.src = profile.img;
-            img.alt = 'User Photo';
-
-            const descriptionDiv = document.createElement('div');
-            descriptionDiv.classList.add('profile-description');
-
-            const name = document.createElement('h2');
-            name.textContent = profile.name;
-
-            const description = document.createElement('p');
-            description.textContent = profile.description;
-
-            descriptionDiv.appendChild(name);
-            descriptionDiv.appendChild(description);
-
-            const heart = document.createElement('span');
-            heart.classList.add('heart');
-            heart.innerHTML = '&#9825;';
-            heart.addEventListener('click', toggleHeart);
-
-            profileDiv.appendChild(img);
-            profileDiv.appendChild(descriptionDiv);
-            profileDiv.appendChild(heart);
-
-            profileDiv.addEventListener('click', function (event) {
-                if (!event.target.classList.contains('heart')) {
-                    showPopup(profile);
-                }
-            });
-
-            return profileDiv;
-        }
-
-        function applyHeartStates() {
-            document.querySelectorAll('.profile').forEach(profileDiv => {
-                const profileName = profileDiv.getAttribute('data-name');
-                const heart = profileDiv.querySelector('.heart');
-                if (heartState[profileName]) {
-                    heart.classList.add('filled');
-                } else {
-                    heart.classList.remove('filled');
-                }
-            });
-        }
-
-        function showPopup(profile) {
-            document.getElementById('popupName').innerText = profile.name;
-            document.getElementById('popupDescription').innerText = profile.description;
-            document.getElementById('popupImg').src = profile.img;
-            document.getElementById('profilePopup').style.display = 'block';
-        }
-
-        function closePopup() {
-            document.getElementById('profilePopup').style.display = 'none';
-        }
-        function toggleMenu() {
-        const menuContent = document.getElementById('menuContent');
-        menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
-        }
-        // Load initial profiles on page load
-        loadInitialProfiles();
-    </script>
+    // Load initial profiles on page load
+    loadInitialProfiles();
+</script>
 </body>
 </html>
-
