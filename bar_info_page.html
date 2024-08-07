@@ -5,121 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Bar Finder</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            text-align: center;
-            width: 100%;
-            max-width: 800px;
-        }
-
-        .logo {
-            width: 100px;
-            height: 100px;
-            background-color: #3498db;
-            border-radius: 50%;
-            margin: 40px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .logo-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            /* Makes the container circular */
-            overflow: hidden;
-            object-fit: cover;
-            /* Ensures image covers the area without distortion */
-
-            /* Hides overflow to keep the image within the circle */
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #3498db;
-            /* Optional: background color for when image is loading */
-        }
-
-        .logo-img img {
-            width: 100%;
-            height: auto;
-            /* Maintain aspect ratio */
-            display: flex;
-            align-items: center;
-            /* Removes any whitespace below the image */
-        }
-
-        .description {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-
-        .image {
-            /* height: 400px;
-                width: 100%;
-                margin-bottom: 20px;
-                background-size: cover;
-                background-position: center; */
-            width: 400px;
-            /* Set the width you want */
-            height: 200px;
-            /* Set the height you want */
-            margin-bottom: 20px;
-            background-size: cover;
-            background-position: center;
-            background-size: cover;
-            background-position: center;
-            border-radius: 5px;
-            /* Ensure it doesn't overflow the container */
-            overflow: hidden;
-        }
-
-        .check-in-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #2ecc71;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .check-in-button:hover {
-            background-color: #27ae60;
-        }
-
-        .bar-info {
-            display: none;
-            margin-top: 20px;
-            text-align: left;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="container">
+    <header>
+        <button class="back-button" onclick="window.location.href='bar_landing_page.html'">&lt;</button>
+        <h1>Bar Finder</h1>
+    </header>
+    <div class="container text-center">
         <!-- Circle Logo -->
         <div class="logo-img">
             <img id="logoImage" src="" alt="Bar Logo">
@@ -127,18 +22,8 @@
         <!-- Description -->
         <div id="description" class="description"></div>
 
-        <!-- Bar Info -->
-        <!-- <div class="bar-info" id="barInfo">
-                <h2 id="barName"></h2>
-                <p><strong>People Count:</strong> <span id="barPplCount"></span></p>
-                <p><strong>Logo:</strong> <span id="barLogo"></span></p>
-            </div> -->
-
-
         <!-- Image -->
         <div class="image" id="image"></div>
-
-
 
         <!-- Check In Button -->
         <button id="checkInButton" class="check-in-button">Check In</button>
@@ -148,7 +33,6 @@
     </div>
 
     <script>
-
         document.addEventListener('DOMContentLoaded', async () => {
             // Fetch the bars data
             const bars = await fetch("./bars.json").then(response => response.json());
@@ -160,10 +44,7 @@
             // Find the bar by ID
             const bar = bars.find(b => b.id == barId);
 
-            //console.log('Selected Bar:', bar); // Log to check if bar is found
-
             if (bar) {
-                //const barInfo = document.getElementById('barInfo');
                 const imageDiv = document.getElementById('image');
                 document.getElementById('logoImage').src = bar.logoURL;
                 document.getElementById('description').textContent = bar.description;
@@ -171,21 +52,14 @@
                 // Display the image
                 imageDiv.style.backgroundImage = `url("${bar.imageURL}")`;
 
-                //console.log('Logo URL:', bar.logoURL);
-                console.log('Image URL:', bar.description);
-
-                // Populate bar information
-                //document.getElementById('barName').textContent = bar.name;
-                //document.getElementById('barPplCount').textContent = bar.pplCount;
-                //document.getElementById('barLogo').textContent = bar.logo;
-
-                // Make bar info visible
-                //barInfo.style.display = 'block';
             } else {
                 document.getElementById('barInfo').innerHTML = '<p>Bar not found.</p>';
             }
+
             document.getElementById('checkInButton').addEventListener('click', () => {
-                alert('You have checked in!');
+                if (confirm('You have checked in! Go to Bar?')) {
+                    window.location.href = 'userlist.html';
+                }
             });
         });
     </script>
