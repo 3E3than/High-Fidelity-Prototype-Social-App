@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Username/Password</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <button class="back-button" onclick="history.back()">&lt;</button>
+        <h1>Forgot Username/Password</h1>
+    </header>
+    <div class="forgot-container">
+        <button class="btn-custom forgot-button" id="forgot-username-btn">Forgot Username</button>
+        <button class="btn-custom forgot-button" id="forgot-password-btn">Forgot Password</button>
+    </div>
+
+    <div class="popup-container" id="forgot-username-popup">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup('forgot-username-popup')">&times;</button>
+            <label for="forgot-username-email">Enter your email:</label>
+            <input type="email" id="forgot-username-email" class="form-control">
+            <button class="btn-custom" onclick="sendUsername()">Send</button>
+        </div>
+    </div>
+
+    <div class="popup-container" id="forgot-password-popup">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup('forgot-password-popup')">&times;</button>
+            <label for="forgot-password-email">Enter your username or email:</label>
+            <input type="text" id="forgot-password-email" class="form-control">
+            <button class="btn-custom" onclick="sendPassword()">Enter</button>
+        </div>
+    </div>
+
+    <div class="popup-container" id="email-sent-popup">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup('email-sent-popup')">&times;</button>
+            <div class="rocket-emoji">🚀</div>
+            <p>The email has been sent.</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('forgot-username-btn').addEventListener('click', function() {
+            document.getElementById('forgot-username-popup').style.display = 'flex';
+        });
+
+        document.getElementById('forgot-password-btn').addEventListener('click', function() {
+            document.getElementById('forgot-password-popup').style.display = 'flex';
+        });
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+
+        function sendUsername() {
+            closePopup('forgot-username-popup');
+            document.getElementById('email-sent-popup').style.display = 'flex';
+        }
+
+        function sendPassword() {
+            closePopup('forgot-password-popup');
+            document.getElementById('email-sent-popup').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
