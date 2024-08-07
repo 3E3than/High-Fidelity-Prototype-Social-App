@@ -308,19 +308,21 @@
         async function generateSortedProfiles() {
             // Use fetch to call the Noggin API for sorted profiles
             const response = await fetch(
-                'https://noggin.rea.gent/exuberant-stork-9223',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: 'Bearer rg_v1_vy8g5rjh16ddi8fwgpk3bmlto1knkv40wcrr_ngk',
-                    },
+              'https://noggin.rea.gent/curved-rabbit-5970',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: 'Bearer rg_v1_4wgriw1jfbod0eub1pnab0dvshzoggz5c8kz_ngk',
+                },
                     body: JSON.stringify({
                         userProfile: JSON.stringify(currentUserProfile),
                         otherProfiles: JSON.stringify(otherUserProfiles)
                     }),
                 }
             );
+
+            // import fetch from 'node-fetch'; // for node.js
 
             const sortedProfiles = await response.json();
             console.log("Sorted Profiles:", sortedProfiles);
