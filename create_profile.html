@@ -197,11 +197,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="profilePicModalLabel">Change profile pic</h1>
+                <h1 class="modal-title fs-5" id="profilePicModalLabel">Change Profile Photo</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-capture-window"></button>
             </div>
             <div class="modal-body">
-                <label for="profile-pic-file" class="form-label"> Say Cheese! </label>
+                <label for="profile-pic-file" class="form-label" style="color: white"> Say Cheese! </label>
                 <video id="video" autoplay></video>
             </div>
             <div class="modal-footer">
@@ -277,6 +277,18 @@
     </div>
 </div>
 <script>
+    window.onload = (event) => {
+        if (localStorage.getItem("name")) document.getElementById("name").value = localStorage.getItem("name");
+        if (localStorage.getItem("gender")) document.getElementById("gender").value = localStorage.getItem("gender");
+        if (localStorage.getItem("age")) document.getElementById("age").value = localStorage.getItem("age");
+        if (localStorage.getItem("bio")) document.getElementById("bio").value = localStorage.getItem("bio");
+        oninput = (event) => {
+            localStorage.setItem("name", document.getElementById("name").value);
+            localStorage.setItem("gender", document.getElementById("gender").value);
+            localStorage.setItem("age", document.getElementById("age").value);
+            localStorage.setItem("bio", document.getElementById("bio").value);
+        }
+    }
     document.addEventListener("DOMContentLoaded", function() {
         const interests = JSON.parse(localStorage.getItem("interests")) || [];
         updateSelectedTags(interests);
