@@ -52,7 +52,7 @@
             max-width: 800px;
         } -->
 
-        <!-- .logo {
+<!-- .logo {
             width: 100px;
             height: 100px;
             background-color: #3498db;
@@ -91,19 +91,19 @@
     </style> -->
 <!-- </head> -->
 <!-- <body> -->
-    <!-- <div class="container"> -->
-        <!-- Circle Logo -->
-        <!-- <div class="logo">Logo</div> -->
+<!-- <div class="container"> -->
+<!-- Circle Logo -->
+<!-- <div class="logo">Logo</div> -->
 
-        <!-- Image instead of Map -->
-        <!-- <div class="image"></div> -->
+<!-- Image instead of Map -->
+<!-- <div class="image"></div> -->
 
-        <!-- Check In Button -->
-        <!-- <button id="checkInButton" class="check-in-button">Check In</button> -->
-    <!-- </div> -->
+<!-- Check In Button -->
+<!-- <button id="checkInButton" class="check-in-button">Check In</button> -->
+<!-- </div> -->
 
-    <!-- <script> -->
-        <!-- //document.addEventListener('DOMContentLoaded', async function () {
+<!-- <script> -->
+<!-- //document.addEventListener('DOMContentLoaded', async function () {
         //const bars = await fetch ("./bars.json").then(response=>response.json());
         //const bars = await fetch ("./bars.json").then(response=>response.json());
         //}
@@ -111,13 +111,14 @@
         document.getElementById('checkInButton').addEventListener('click', () => {
             alert('You have checked in!');
         }); -->
-    <!-- </script> -->
+<!-- </script> -->
 <!-- </body> -->
 <!-- </html> -->
 
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -186,13 +187,12 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- Circle Logo -->
         <div class="logo">Logo</div>
 
-        <!-- Image -->
-        <div class="image" id="image"></div>
 
         <!-- Bar Info -->
         <div class="bar-info" id="barInfo">
@@ -201,13 +201,24 @@
             <p><strong>Logo:</strong> <span id="barLogo"></span></p>
         </div>
 
+        
+        <!-- Image -->
+        <div class="image" id="image"></div>
+
+        
+
         <!-- Check In Button -->
         <button id="checkInButton" class="check-in-button">Check In</button>
+
+        <!-- Bar List -->
+        <div class="bar-list" id="barList"></div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', async function () {
-            const bars = await fetch('./bars.json').then(response => response.json());
+            // Fetch bars data
+            const response = await fetch('./bars.json');
+            const bars = await response.json();
 
             const imageDiv = document.getElementById('image');
             const barInfoDiv = document.getElementById('barInfo');
@@ -218,20 +229,31 @@
 
             let currentBar = null;
 
+            // Function to update bar info
             function updateBarInfo(bar) {
                 currentBar = bar;
-                imageDiv.style.backgroundImage = 'url("your-image-url.jpg")'; // Replace with bar-specific image if available
+                imageDiv.style.backgroundImage = 'url("path/to/your/image.jpg")'; // Replace with actual image URL if available
                 barName.textContent = bar.name;
                 barPplCount.textContent = bar.pplCount;
                 barLogo.textContent = bar.logo;
                 barInfoDiv.style.display = 'block';
             }
-//have an id & get it from the url, come back as string so cast my int id
-// look through array till you find ,, array.find or a for loop, and find the one with the right id
-// that's the bar we want to render
-            // Display the first bar's information initially
-            if (bars.length > 0) {
-                updateBarInfo(bars[0]);
+
+            // Get bar ID from URL
+            function getBarIdFromURL() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return parseInt(urlParams.get('id'), 10);
+            }
+
+            // Find and display the bar based on ID from URL
+            function displayBarById() {
+                const barId = getBarIdFromURL();
+                const bar = bars.find(b => b.id === barId);
+                if (bar) {
+                    updateBarInfo(bar);
+                } else {
+                    barInfoDiv.innerHTML = `<p>Bar not found.</p>`;
+                }
             }
 
             // Handle the Check In button click event
@@ -243,15 +265,10 @@
                 }
             });
 
-            // Example function to simulate selecting different bars
-            // In a real application, this would be based on user interaction (e.g., clicking a list of bars)
-            document.addEventListener('click', () => {
-                // Simulate selecting the second bar for demonstration
-                if (bars.length > 1) {
-                    updateBarInfo(bars[1]);
-                }
-            });
+            // Display the bar info based on the ID from the URL
+            displayBarById();
         });
     </script>
 </body>
+
 </html>
