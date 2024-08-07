@@ -10,7 +10,7 @@
 <body>
 <header>
     <button class="back-button" onclick="window.location.href='bar_info_page.html'">&lt;</button>
-    <h1>Users Nearby</h1> 
+    <h1> Users Nearby </h1> 
     <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
     <div class="menu-content" id="menuContent">
         <a href="home.html">Home</a>
@@ -39,8 +39,12 @@
         </label>
     </div>
     
-    <div class="profiles active" id="profilesContainer">
+    <div class="initial-profiles active" id="profilesContainer">
         <!-- Profiles will be dynamically loaded here -->
+    </div>
+    
+    <div class="friend-mode" id="friendProfilesContainer">
+        <!-- Friend mode profiles will be dynamically loaded here -->
     </div>
 </div>
     
@@ -84,7 +88,6 @@
         { name: "Peyton", description: "Creative artist and designer.", interests: ["Painting", "Design", "Photography"], hobbies: ["Sketching", "Traveling"], profession: "Graphic Designer", img: "Profile1.jpg" }
     ];
 
-    // Define friend mode profiles
     const friendUserProfiles = [
         { name: "Robin", description: "Nature lover and explorer.", interests: ["Hiking", "Nature", "Bird Watching"], hobbies: ["Photography", "Camping"], profession: "Environmental Scientist", img: "Profile2.jpg" },
         { name: "Jordan", description: "Tech enthusiast and startup founder.", interests: ["Programming", "Startups", "Gaming"], hobbies: ["Robotics", "AI Research"], profession: "Entrepreneur", img: "Profile3.jpg" },
@@ -117,32 +120,29 @@
     }
 
     function showHeartPopup(name) {
-    const profile = otherUserProfiles.find(profile => profile.name === name);
-    const heartPopup = document.getElementById('heartPopup');
-    heartPopup.innerHTML = `
-        <div class="popup-content">
-            <button class="close-btn" onclick="closeHeartPopup()">×</button>
-            <div class="popup-users">
-                <div class="user-profile">
-                    <img id="currentUserImg" src="${currentUserProfile.img}" alt="Current User Photo">
-                    <h2 id="currentUserName">${currentUserProfile.name}</h2>
+        const profile = otherUserProfiles.find(profile => profile.name === name);
+        const heartPopup = document.getElementById('heartPopup');
+        heartPopup.innerHTML = `
+            <div class="popup-content">
+                <button class="close-btn" onclick="closeHeartPopup()">×</button>
+                <div class="popup-users">
+                    <div class="user-profile">
+                        <img id="currentUserImg" src="${currentUserProfile.img}" alt="Current User Photo">
+                        <h2 id="currentUserName">${currentUserProfile.name}</h2>
+                    </div>
+                    <div class="heart-icon">❤️</div>
+                    <div class="user-profile">
+                        <img id="targetUserImg" src="${profile.img}" alt="${profile.name}'s Photo">
+                        <h2>${profile.name}</h2>
+                    </div>
                 </div>
-                <div class="heart-icon">❤️</div>
-                <div class="user-profile">
-                    <img id="targetUserImg" src="${profile.img}" alt="${profile.name}'s Photo">
-                    <h2>${profile.name}</h2>
+                <div>
+                    <button class="btn-custom" onclick="${name === 'Peyton' ? 'meetAtBar2()' : 'meetAtBar()'}">Meet at the bar?</button>
+                    <button class="btn-custom" onclick="later()">Later</button>
                 </div>
             </div>
-            <div>
-                <button class="btn-custom" onclick="${name === 'Peyton' ? 'meetAtBar2()' : 'meetAtBar()'}">Meet at the bar?</button>
-                <button class="btn-custom" onclick="later()">Later</button>
-            </div>
-        </div>
-    `;
-    heartPopup.style.display = 'flex';
-}
-    function closeHeartPopup() {
-        document.getElementById('heartPopup').style.display = 'none';
+        `;
+        heartPopup.style.display = 'flex';
     }
 
     function meetAtBar() {
