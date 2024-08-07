@@ -6,9 +6,10 @@
     <title>Login</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
-            background-color: orange;
+            background-color: rgb(255, 255, 255);
         }
         .login-container {
             max-width: 400px;
@@ -18,56 +19,14 @@
             background-color: orange;
             /*border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+            padding-top: 40px;
         }
         .login-container img {
             display: block;
             margin: 0 auto 20px;
         }
 
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
-        }
-
-        .topbar .title {
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        .menu-button {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .menu-content {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background-color: white;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        .menu-content a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #333;
-        }
-
-        .menu-content a:hover {
-            background-color: #f4f4f4;
-        }
-
+        
         /*#loginForm {
             margin-right: 10%;
             margin-left: 10%;
@@ -80,17 +39,18 @@
     </style>
 </head>
 <body>
-    <div class="topbar">
-        <div class="title">Over Drinks</div>
-        <button class="menu-button" onclick="toggleMenu()">☰</button>
-        <div class="menu-content" id="menuContent">
-            <a href="bar_landing_page.html">Home</a>
-            <a href="profile.html">Profile</a>
-            <a href="settings.html">Settings</a>
-            <a href="mission.html">Mission</a>
-            <a href="faq.html">FAQs</a>
-        </div>
+<header>
+    <button class="back-button" onclick="history.back()">&lt;</button>
+    <h1>Login</h1>
+    <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+    <div class="menu-content" id="menuContent">
+        <a href="bar_landing_page.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="settings.html">Settings</a>
+        <a href="faq.html">FAQs</a>
+        <a href="mission.html">Mission</a>
     </div>
+</header>
    <div class="login-container">
         <img src="Over_Drinks_Logo_No_Background 1.png" alt="Logo" width="200px">
         <h2 class="text-center">Login</h2>
