@@ -115,6 +115,62 @@
 <!-- </body> -->
 <!-- </html> -->
 
+<!-- // document.addEventListener('DOMContentLoaded', async function () {
+    //     // Fetch bars data
+    //     const response = await fetch('./bars.json');
+    //     const bars = await response.json();
+
+    //     const imageDiv = document.getElementById('image');
+    //     const barInfoDiv = document.getElementById('barInfo');
+    //     const barName = document.getElementById('barName');
+    //     const barPplCount = document.getElementById('barPplCount');
+    //     const barLogo = document.getElementById('barLogo');
+    //     const checkInButton = document.getElementById('checkInButton');
+
+    //     let currentBar = null;
+
+    //     // Function to update bar info
+    //     function updateBarInfo(bar) {
+    //         currentBar = bar;
+    //         imageDiv.style.backgroundImage = `url("${bar.imageURL}")`;
+    //         //'url("path/to/your/image.jpg")'; // Replace with actual image URL if available
+    //         barName.textContent = bar.name;
+    //         barPplCount.textContent = bar.pplCount;
+    //         barLogo.textContent = bar.logo;
+    //         barInfoDiv.style.display = 'block';
+    //     }
+
+    //     // Get bar ID from URL
+    //     function getBarIdFromURL() {
+    //         const urlParams = new URLSearchParams(window.location.search);
+    //         return parseInt(urlParams.get('id'), 10);
+    //     }
+
+    //     // Find and display the bar based on ID from URL
+    //     function displayBarById() {
+    //         const barId = getBarIdFromURL();
+    //         const bar = bars.find(b => b.id === barId);
+    //         if (bar) {
+    //             updateBarInfo(bar);
+    //         } else {
+    //             barInfoDiv.innerHTML = `<p>Bar not found.</p>`;
+    //         }
+    //     }
+
+    //     // Handle the Check In button click event
+    //     checkInButton.addEventListener('click', () => {
+    //         if (currentBar) {
+    //             alert(`You have checked in to ${currentBar.name}!`);
+    //         } else {
+    //             alert('Please select a bar first.');
+    //         }
+    //     });
+
+    //     // Display the bar info based on the ID from the URL
+    //     displayBarById();
+    // }); -->
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -145,7 +201,7 @@
             height: 100px;
             background-color: #3498db;
             border-radius: 50%;
-            margin: 20px auto;
+            margin: 40px auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -155,11 +211,21 @@
         }
 
         .image {
-            height: 400px;
+            /* height: 400px;
             width: 100%;
             margin-bottom: 20px;
             background-size: cover;
+            background-position: center; */
+            width: 400px;
+            /* Set the width you want */
+            height: 200px;
+            /* Set the height you want */
+            margin-bottom: 20px;
+            background-size: cover;
             background-position: center;
+            border-radius: 5px;
+            /* Ensure it doesn't overflow the container */
+            overflow: hidden;
         }
 
         .check-in-button {
@@ -195,17 +261,17 @@
 
 
         <!-- Bar Info -->
-        <div class="bar-info" id="barInfo">
+        <!-- <div class="bar-info" id="barInfo">
             <h2 id="barName"></h2>
             <p><strong>People Count:</strong> <span id="barPplCount"></span></p>
             <p><strong>Logo:</strong> <span id="barLogo"></span></p>
-        </div>
+        </div> -->
 
-        
+
         <!-- Image -->
         <div class="image" id="image"></div>
 
-        
+
 
         <!-- Check In Button -->
         <button id="checkInButton" class="check-in-button">Check In</button>
@@ -215,58 +281,37 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', async function () {
-            // Fetch bars data
-            const response = await fetch('./bars.json');
-            const bars = await response.json();
 
-            const imageDiv = document.getElementById('image');
-            const barInfoDiv = document.getElementById('barInfo');
-            const barName = document.getElementById('barName');
-            const barPplCount = document.getElementById('barPplCount');
-            const barLogo = document.getElementById('barLogo');
-            const checkInButton = document.getElementById('checkInButton');
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Fetch the bars data
+            const bars = await fetch("./bars.json").then(response => response.json());
 
-            let currentBar = null;
+            // Get the query parameters from the URL
+            const params = new URLSearchParams(window.location.search);
+            const barId = params.get('id');
 
-            // Function to update bar info
-            function updateBarInfo(bar) {
-                currentBar = bar;
-                imageDiv.style.backgroundImage = 'url("path/to/your/image.jpg")'; // Replace with actual image URL if available
-                barName.textContent = bar.name;
-                barPplCount.textContent = bar.pplCount;
-                barLogo.textContent = bar.logo;
-                barInfoDiv.style.display = 'block';
+            // Find the bar by ID
+            const bar = bars.find(b => b.id == barId);
+
+            //console.log('Selected Bar:', bar); // Log to check if bar is found
+
+            if (bar) {
+                //const barInfo = document.getElementById('barInfo');
+                const imageDiv = document.getElementById('image');
+
+                // Display the image
+                imageDiv.style.backgroundImage = `url("${bar.imageURL}")`;
+
+                // Populate bar information
+                //document.getElementById('barName').textContent = bar.name;
+                //document.getElementById('barPplCount').textContent = bar.pplCount;
+                //document.getElementById('barLogo').textContent = bar.logo;
+
+                // Make bar info visible
+                //barInfo.style.display = 'block';
+            } else {
+                document.getElementById('barInfo').innerHTML = '<p>Bar not found.</p>';
             }
-
-            // Get bar ID from URL
-            function getBarIdFromURL() {
-                const urlParams = new URLSearchParams(window.location.search);
-                return parseInt(urlParams.get('id'), 10);
-            }
-
-            // Find and display the bar based on ID from URL
-            function displayBarById() {
-                const barId = getBarIdFromURL();
-                const bar = bars.find(b => b.id === barId);
-                if (bar) {
-                    updateBarInfo(bar);
-                } else {
-                    barInfoDiv.innerHTML = `<p>Bar not found.</p>`;
-                }
-            }
-
-            // Handle the Check In button click event
-            checkInButton.addEventListener('click', () => {
-                if (currentBar) {
-                    alert(`You have checked in to ${currentBar.name}!`);
-                } else {
-                    alert('Please select a bar first.');
-                }
-            });
-
-            // Display the bar info based on the ID from the URL
-            displayBarById();
         });
     </script>
 </body>
