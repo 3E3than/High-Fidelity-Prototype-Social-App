@@ -7,18 +7,31 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
         body {
-            background-color: orange;
+            background-image: url('background.jpeg'); /* Use the actual path to your image */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent the background image from repeating */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
         .profile-container {
+            width: 100%;
             max-width: 400px;
-            margin: 100px auto;
-            margin-top: 0px;
             padding: 20px;
-            background-color: orange;
-            /*border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+            background-color: rgba(255, 255, 255, 0.5); /* More transparent */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .topbar {
@@ -26,8 +39,11 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.8); /* Slight transparency */
             color: white;
+            width: 100%;
+            position: fixed;
+            top: 0;
         }
 
         .topbar .title {
@@ -44,10 +60,10 @@
         }
 
         .menu-button {
-            background-color: #333;
+            background-color: transparent;
             color: white;
-            padding: 10px;
             border: none;
+            font-size: 24px;
             cursor: pointer;
         }
 
