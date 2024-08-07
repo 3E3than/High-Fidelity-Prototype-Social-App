@@ -207,7 +207,7 @@
 </head>
 <body>
     <div class="topbar">
-        <button class="back-button" onclick="window.history.back()">&lt;</button>
+        <button class="back-button" onclick="window.location.href='bar_info_page.html'">&lt;</button>
         <div class="title">List of Users</div>
         <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
         <div class="menu-content" id="menuContent">
@@ -262,15 +262,23 @@
         };
 
         const otherUserProfiles = [
-            { name: "Taylor", description: "Enjoys reading and gaming.", interests: ["Reading", "Gaming", "Cooking"], hobbies: ["Writing", "Traveling"], profession: "Writer", img: "https://via.placeholder.com/150" },
-            { name: "Jamie", description: "Likes hiking and cooking.", interests: ["Hiking", "Cooking", "Music"], hobbies: ["Traveling", "Painting"], profession: "Graphic Designer", img: "https://via.placeholder.com/150" },
-            { name: "Morgan", description: "Travels often and enjoys music.", interests: ["Hiking", "Reading", "Cooking"], hobbies: ["Photography", "Traveling"], profession: "Data Scientist", img: "https://via.placeholder.com/150" }
+            { name: "Taylor", description: "Enjoys reading and gaming.", interests: ["Reading", "Gaming", "Cooking"], hobbies: ["Writing", "Traveling"], profession: "Writer", img: "Profile1.jpg" },
+            { name: "Jamie", description: "Likes hiking and cooking.", interests: ["Hiking", "Cooking", "Music"], hobbies: ["Traveling", "Painting"], profession: "Graphic Designer", img: "Profile2.jpg" },
+            { name: "Morgan", description: "Travels often and enjoys music.", interests: ["Hiking", "Reading", "Cooking"], hobbies: ["Photography", "Traveling"], profession: "Data Scientist", img: "Profile3.jpg" },
+            { name: "James" , description: "Likes watching movies and running" , interests:["Movies" , "Running" , "Fitness"] , hobbies: ["Star Wars" , "Running"], profession: "Business Analyst" , img: "Profile1.jpg"},
+            { name: "Cameron", description: "Tech enthusiast and coder.", interests: ["Programming", "Gaming", "Music"], hobbies: ["Robotics", "3D Printing"], profession: "Software Developer", img: "Profile1.jpg" },
+            { name: "Charlie", description: "Fitness freak and health coach.", interests: ["Fitness", "Cooking", "Meditation"], hobbies: ["Yoga", "Cycling"], profession: "Personal Trainer", img: "Profile2.jpg" },
+            { name: "Peyton", description: "Creative artist and designer.", interests: ["Painting", "Design", "Photography"], hobbies: ["Sketching", "Traveling"], profession: "Graphic Designer", img: "Profile1.jpg" },
         ];
 
         const friendUserProfiles = [
-            { name: "Riley", description: "Enjoys photography and music.", interests: ["Photography", "Music", "Cooking"], hobbies: ["Traveling", "Writing"], profession: "Photographer", img: "https://via.placeholder.com/150" },
-            { name: "Jordan", description: "Loves painting and hiking.", interests: ["Painting", "Hiking", "Traveling"], hobbies: ["Cooking", "Music"], profession: "Artist", img: "https://via.placeholder.com/150" },
-            { name: "Parker", description: "Passionate about traveling and cooking.", interests: ["Traveling", "Cooking", "Music"], hobbies: ["Hiking", "Painting"], profession: "Chef", img: "https://via.placeholder.com/150" }
+            { name: "Riley", description: "Enjoys photography and music.", interests: ["Photography", "Music", "Cooking"], hobbies: ["Traveling", "Writing"], profession: "Photographer", img: "Profile3.jpg" },
+            { name: "Jordan", description: "Loves painting and hiking.", interests: ["Painting", "Hiking", "Traveling"], hobbies: ["Cooking", "Music"], profession: "Artist", img: "Profile3.jpg" },
+            { name: "Parker", description: "Passionate about traveling and cooking.", interests: ["Traveling", "Cooking", "Music"], hobbies: ["Hiking", "Painting"], profession: "Chef", img: "Profile1.jpg" },
+            { name: "Alexis", description: "Pet lover and volunteer.", interests: ["Animal Rescue", "Reading", "Traveling"], hobbies: ["Dog Walking", "Gardening"], profession: "Veterinarian", img: "Profile3.jpg" },
+            { name: "Finley", description: "Outdoor explorer and trekker.", interests: ["Trekking", "Photography", "Bird Watching"], hobbies: ["Traveling", "Writing"], profession: "Travel Blogger", img: "Profile3.jpg" },
+            { name: "Logan", description: "History buff and museum goer.", interests: ["History", "Museums", "Reading"], hobbies: ["Antiquing", "Genealogy"], profession: "Historian", img: "Profile2.jpg" },
+            { name: "Parker", description: "Techie and gadget lover.", interests: ["Technology", "Gaming", "Music"], hobbies: ["Building PCs", "Drone Flying"], profession: "IT Specialist", img: "Profile2.jpg" }
         ];
 
         const heartState = {}; // To track heart icon state
