@@ -5,162 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bar Finder</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-        }
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
-        }
-
-        .topbar .title {
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        .menu-button {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .menu-content {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background-color: white;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        .menu-content a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #333;
-        }
-
-        .menu-content a:hover {
-            background-color: #f4f4f4;
-        }
-
-        .search-bar {
-            margin-bottom: 20px;
-            position: relative;
-            text-align: center;
-        }
-
-        #search-input {
-            width: 60%;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        #search-button,
-        #filter-button {
-            padding: 10px;
-            font-size: 16px;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-
-        .filter-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .filter-menu {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-            top: 100%;
-            left: 0;
-            z-index: 1000;
-            width: 250px;
-        }
-
-        .filter-menu label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .filter-values {
-            display: none;
-            margin-top: 10px;
-        }
-
-        .filter-values label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .bar-list {
-            max-height: 500px;
-            overflow-y: auto;
-        }
-
-        .bar-item {
-            background-color: #fff;
-            margin-bottom: 10px;
-            padding: 15px;
-            display: block;
-            color: black;
-            text-decoration: none;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.5s;
-        }
-
-        .bar-item:hover {
-            background-color: #eee;
-
-        }
-
-        .bar-item h2 {
-            margin: 0;
-            font-size: 20px;
-        }
-
-        .bar-item p {
-            margin: 5px 0;
-        }
-    </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="topbar">
-        <div class="title">Over Drinks</div>
+    <header>
+        <button class="back-button" onclick="history.back()">&lt;</button>
+        <h1>Over Drinks</h1>
         <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
         <div class="menu-content" id="menuContent">
             <a href="bar_landing_page.html">Home</a>
             <a href="profile.html">Profile</a>
             <a href="settings.html">Settings</a>
-            <a href="mission.html">Mission</a>
             <a href="faq.html">FAQs</a>
+            <a href="mission.html">Mission</a>
         </div>
-    </div>
+    </header>
     <div class="container">
         <div class="search-bar">
             <input type="text" id="search-input" placeholder="Search Bars...">
@@ -168,6 +29,7 @@
             <div class="filter-container">
                 <button id="filter-button">Filter</button>
                 <div id="filter-menu" class="filter-menu">
+                    <label for="filter-options">Filter by:</label>
                     <select id="filter-options">
                         <option value="">Filter by:</option>
                         <option value="atmosphere">Atmosphere</option>
@@ -180,7 +42,7 @@
             </div>
         </div>
         <section class="bar-list" id="bar-list">
-
+            <!-- Bar items will be dynamically loaded here -->
         </section>
     </div>
     <script>
@@ -200,7 +62,6 @@
             const filterOptions = document.getElementById('filter-options');
             const filterValues = document.getElementById('filter-values');
 
-
             const filters = {
                 atmosphere: ['Casual', 'Elegant', 'Lively', 'Relaxed'],
                 music: ['Jazz', 'Rock', 'Pop', 'Acoustic'],
@@ -210,39 +71,18 @@
                 pplCount: ['45', '100', '20', '13', '2', '17', '165', '55', '1', '0']
             };
 
-            // function displayBars(barsToDisplay) {
-            //     barList.innerHTML = '';
-            //     barsToDisplay.forEach(bar => {
-            //         const barItem = document.createElement('a');
-            //         barItem.className = 'bar-item';
-            //         barItem.href = `bar_info_page.html?id=${bar.id}&imageURL=${encodeURIComponent(bar.imageURL)}`;
-            //         barItem.innerHTML = `
-            //             <h2>${bar.name}</h2>
-
-
-
-            //         `;
-            //         barList.appendChild(barItem);
-            //     });
-            // }
-
             function displayBars(barsToDisplay) {
                 barList.innerHTML = '';
                 barsToDisplay.forEach(bar => {
                     const barItem = document.createElement('a');
                     barItem.className = 'bar-item';
-                    barItem.href = `bar_info_page.html?id=${bar.id}`;  // Updated to include id
+                    barItem.href = `bar_info_page.html?id=${bar.id}`;
                     barItem.innerHTML = `
-                        <h2>${bar.name}</h2>
-        `;
+                        <h2>${bar.name} 🔥 ${bar.pplCount}</h2>
+                    `;
                     barList.appendChild(barItem);
                 });
             }
-            // // <a href="bar_info_page.html?id=${bar.id}">more info</a>
-            // <p><strong>People Count:</strong> ${bar.pplCount}</p>
-            //             <p><strong>Logo:</strong> ${bar.logo}</p>
-            // <img src="${bar.imageURL}" alt="${bar.name}" style="width: 100px; height: auto;"/>
-
 
             function filterBars() {
                 const selectedOption = filterOptions.value;
@@ -290,9 +130,8 @@
                 }
             });
 
-            // Display all bars on initial load
             displayBars(bars);
         });
     </script>
-
+</body>
 </html>
