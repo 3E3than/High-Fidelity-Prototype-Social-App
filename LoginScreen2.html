@@ -13,20 +13,86 @@
         .login-container {
             max-width: 400px;
             margin: 100px auto;
+            margin-top: 0px;
             padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: orange;
+            /*border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
         }
         .login-container img {
             display: block;
             margin: 0 auto 20px;
         }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        .topbar .title {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .menu-button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-content {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .menu-content a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .menu-content a:hover {
+            background-color: #f4f4f4;
+        }
+
+        /*#loginForm {
+            margin-right: 10%;
+            margin-left: 10%;
+            max-width: 400px;
+        }
+
+        #logo {
+            align-self: center;
+        }*/
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <img src="https://via.placeholder.com/128" alt="Logo">
+    <div class="topbar">
+        <div class="title">Over Drinks</div>
+        <button class="menu-button" onclick="toggleMenu()">☰</button>
+        <div class="menu-content" id="menuContent">
+            <a href="bar_landing_page.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="settings.html">Settings</a>
+            <a href="mission.html">Mission</a>
+            <a href="faq.html">FAQs</a>
+        </div>
+    </div>
+   <div class="login-container">
+        <img src="Over_Drinks_Logo_No_Background 1.png" alt="Logo" width="200px">
         <h2 class="text-center">Login</h2>
         <form id="loginForm">
             <div class="form-group">
@@ -37,7 +103,7 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            <button type="submit" class="btn btn-primary btn-block">Create Account</button>
         </form>
     </div>
 
@@ -48,8 +114,12 @@
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            window.location.href = 'bar_landing_page.html';
+            window.location.href = 'profile.html';
         });
+        function toggleMenu() {
+            const menuContent = document.getElementById('menuContent');
+            menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+        }
     </script>
 </body>
 </html>
