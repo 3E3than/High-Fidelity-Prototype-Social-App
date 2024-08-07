@@ -1,10 +1,30 @@
-/* topbar.css */
+/* Centralized Styles */
+
+/* General Styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('background.jpeg'); /* Ensure the image path is correct */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+
+}
+
+
+/* Header Styles */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.8); /* Slight transparency */
     color: white;
     position: fixed;
     top: 0;
@@ -18,7 +38,7 @@ header h1 {
     margin: 0;
 }
 
-.back-button {
+.back-button, .menu-button {
     background: none;
     border: none;
     color: white;
@@ -26,21 +46,15 @@ header h1 {
     cursor: pointer;
 }
 
-.menu-button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-}
 
 .menu-content {
     display: none;
     position: absolute;
-    top: 100%;
-    right: 0;
+    top: 60px;
+    right: 20px;
     background-color: #333;
-    width: 100px;
+    width: 200px;
+    z-index: 1000;
 }
 
 .menu-content a {
@@ -52,4 +66,529 @@ header h1 {
 
 .menu-content a:hover {
     background-color: #575757;
+}
+
+.menu-content.show {
+    display: block;
+}
+
+/* Centralized container styles for pages */
+.transparent-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 100px auto;
+    text-align: center;
+}
+
+/* Example of the Profile Container */
+.profile-container, .login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 100px auto;
+    text-align: center;
+}
+
+/* Specific styles for FAQS, Settings, and Mission page items */
+.faq-container, .settings-container, .mission-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 80px 20px 20px;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    text-align: center; /* Adjusted for readability */
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 80px 20px 20px; /* Adjust padding to accommodate fixed header */
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding does not add to width */
+}
+
+/* Specific styling for items within the containers */
+.faq-item, .settings-option, .mission-box {
+    background-color: rgba(255, 255, 255, 0.7); /* Slightly less transparent for better readability */
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item h3, .settings-option h5, .mission-box h2 {
+    margin-top: 0;
+}
+
+/* Adjustments for text color to ensure readability */
+.faq-item, .settings-option, .mission-box {
+    color: #333; /* Darker text for readability */
+}
+
+
+/* Profile Container */
+.profile-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5); /* More transparent */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 100px auto;
+}
+
+.profile-picture-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    width: 150px;  /* Increase the size as needed */
+    height: 150px; /* Increase the size as needed */
+    object-fit: cover;
+    cursor: pointer;
+}
+
+
+/* Profile Styles */
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+
+.profile img {
+    border-radius: 50%;
+    margin-right: 20px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.profile-description {
+    flex: 1;
+    max-width: 800px;
+}
+
+.heart, .invite-btn {
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.heart.filled {
+    color: red;
+}
+
+.invite-btn:hover {
+    color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .profile {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile img {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* Popup Styles */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.popup img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.popup h2 {
+    margin-bottom: 10px;
+}
+
+.popup p {
+    margin-bottom: 20px;
+}
+
+.popup .close-btn, .popup .invite-btn {
+    display: inline-block;
+    background: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Matches Container */
+.matches-container {
+    text-align: center;
+    margin: 20px 0;
+    margin-top: 80px; /* Adjust this value to move the button down */
+}
+
+.matches-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Switch Styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin: 0 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #007BFF;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Switch Label Styles */
+.switch-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Login Container */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container img {
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+    border: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Button Styles */
+.btn-custom {
+    background: linear-gradient(135deg, #C0C0C0, #A9A9A9); /* Gradient silver background */
+    color: white;
+    border: none;
+    font-size: 30px; /* Increase font size for readability */
+    font-weight: bold; /* Make text bold */
+    padding: 15px 20px; /* Adjust padding for better look */
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Ensure full width */
+    max-width: 400px; /* Max width for larger screens */
+    margin: 10px auto; /* Center the button */
+    display: block; /* Ensure block display */
+    text-align: center; /* Center text */
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Outlined text effect */
+}
+
+.btn-custom:hover {
+    background: linear-gradient(135deg, #A9A9A9, #808080); /* Darker gradient for hover effect */
+}
+
+/* Settings Styles */
+.settings-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.settings-option h5 {
+    margin: 0;
+}
+
+.switch-icon {
+    width: 40px;
+    height: 24px;
+    background-color: #ddd;
+    border-radius: 12px;
+    position: relative;
+}
+
+.switch-icon::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s;
+}
+
+.switch-on {
+    background-color: #007bff;
+}
+
+.switch-on::after {
+    left: 18px;
+}
+
+
+.switch-container {
+    text-align: center;
+    margin: 40px 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi translucent background */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.switch-container label {
+    color: white; /* Change color to white */
+    font-weight: bold; /* Make text bold */
+    font-size: 18px; /* Enlarge text */
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.logout-button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.blacklist-content {
+    display: none;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    height: calc(100vh - 120px); /* Adjusted for topbar and bottom button */
+    overflow-y: auto;
+    position: relative;
+    top: 60px; /* Adjusted to not be covered by topbar */
+}
+
+.user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.blacklist-switch-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Container Styles */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 80px 20px 20px; /* Adjust padding to accommodate fixed header */
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding does not add to width */
+}
+
+
+
+
+.faq-question {
+    font-weight: bold;
+}
+
+/* Bar Finder Styles */
+.bar-list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.bar-item {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 15px;
+    display: block;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s;
+}
+
+.bar-item:hover {
+    background-color: #eee;
+}
+
+.bar-item h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.bar-item p {
+    margin: 5px 0;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+    position: relative;
+    text-align: center;
+}
+
+#search-input {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#search-button, #filter-button {
+    padding: 10px;
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.filter-container {
+    position: relative;
+    display: inline-block;
+}
+
+.filter-menu {
+    display: none;
+    position: absolute;
+    background-color: rgba(51, 51, 51, 0.9); /* Slight transparency for better visibility */
+    color: white; /* Ensure the text is readable */
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    top: 40px; /* Adjust as needed for alignment */
+    left: -150%; /* center with the filter button */
+    z-index: 1000;
+    width: 200px; /* Adjust width for better fit */
+}
+
+
+.filter-menu label {
+    display: block;
+    margin-bottom: 10px;
+    color: white; /* Ensure the text is readable */
+
+}
+
+.filter-values {
+    display: none;
+    margin-top: 10px;
+}
+
+.filter-values label {
+    display: block;
+    margin-bottom: 5px;
+    color: white; /* Ensure the text is readable */
 }
