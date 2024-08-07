@@ -3,71 +3,70 @@
         "id": 1,
         "pplCount": "45",
         "name": "KIPS",
-        "logo": "pic",
+        "logoURL": "assets/kips_logo.jpg",
         "imageURL": "assets/kips.png"
     },
     {
         "id": 2,
         "pplCount": "100",
         "name": "CALIS SPORTS BAR & KITCHEN",
-        "logo": "pic",
+        "logoURL": "assets/calis_logo.png",
         "imageURL": "assets/calis.png"
     },
     {
         "id": 3,
         "pplCount": "20",
         "name": "RALEIGHS",
-        "logo": "pic",
+        "logoURL": "assets/raleighs_logo.jpg",
         "imageURL": "assets/raleighs.png"
     },
     {
         "id": 4,
         "pplCount": "13",
         "name": "TIPSEA",
-        "logo": "pic",
+        "logoURL": "assets/tipsea_logo.png",
         "imageURL": "assets/tipsea.png"
     },
     {
         "id": 5,
         "pplCount": "165",
         "name": "TUPPER & REED",
-        "logo": "pic",
+        "logoURL": "assets/tupper_logo.png",
         "imageURL": "assets/tupper.png"
     },
     {
         "id": 6,
         "pplCount": "17",
         "name": "TAP IN LOUNGE",
-        "logo": "pic",
+        "logoURL": "tapin_logo.png",
         "imageURL": "assets/tapin.png"
     },
     {
         "id": 7,
         "pplCount": "2",
         "name": "JUPITER",
-        "logo": "pic",
+        "logoURL": "jupiter_logo.jpg",
         "imageURL": "assets/jupiter.png"
     },
     {
         "id": 8,
         "pplCount": "55",
         "name": "TRIPLE ROCK BREWERY",
-        "logo": "pic",
+        "logoURL": "triplerock_logo.png",
         "imageURL": "assets/triplerock.png"
     },
     {
         "id": 9,
         "pplCount": "1",
         "name": "CORNERSTONE",
-        "logo": "pic",
+        "logoURL": "corner_logo.png",
         "imageURL": "assets/corner.png"
     },
     {
         "id": 10,
         "pplCount": "0",
         "name": "SPATS",
-        "logo": "pic",
+        "logoURL": "spats_logo.png",
         "imageURL": "assets/spats.png"
-
     }
 ]
