@@ -15,15 +15,8 @@
             flex-direction: column;
             height: 100vh;
         }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
-            flex-grow: 1;
-        }
         .topbar {
-            background-color: orange;
+            background-color: #333333;
             color: white;
             padding: 15px;
             display: flex;
@@ -71,9 +64,18 @@
         .menu-content.show {
             display: block;
         }
-        h1 {
+        .matches-container {
             text-align: center;
-            margin-bottom: 20px;
+            margin: 20px 0;
+        }
+        .matches-button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
         }
         .switch {
             position: relative;
@@ -124,7 +126,6 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             flex-wrap: wrap;
-            cursor: pointer;
         }
         .profile img {
             border-radius: 50%;
@@ -206,16 +207,20 @@
 </head>
 <body>
     <div class="topbar">
-        <button class="back-button" onclick="history.back()">&lt;</button>
+        <button class="back-button" onclick="window.location.href='bar_info_page.html'">&lt;</button>
         <div class="title">List of Users</div>
         <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
         <div class="menu-content" id="menuContent">
-            <a href="bar_landing_page.html">Home</a>
+            <a href="home.html">Home</a>
             <a href="profile.html">Profile</a>
             <a href="settings.html">Settings</a>
-            <a href="mission.html">Mission</a>
             <a href="faq.html">FAQs</a>
+            <a href="mission.html">Mission</a>
         </div>
+    </div>
+
+    <div class="matches-container">
+        <button class="matches-button" onclick="window.location.href='MatchesList.html'">Matches</button>
     </div>
 
     <div class="container">
@@ -249,7 +254,6 @@
     </div>
     
     <script>
-        // Static user profiles for testing
         const currentUserProfile = {
             name: "Alex",
             interests: ["Hiking", "Reading", "Cooking"],
@@ -263,28 +267,50 @@
             { name: "Morgan", description: "Travels often and enjoys music.", interests: ["Hiking", "Reading", "Cooking"], hobbies: ["Photography", "Traveling"], profession: "Data Scientist", img: "https://via.placeholder.com/150" }
         ];
 
+        const friendUserProfiles = [
+            { name: "Riley", description: "Enjoys photography and music.", interests: ["Photography", "Music", "Cooking"], hobbies: ["Traveling", "Writing"], profession: "Photographer", img: "https://via.placeholder.com/150" },
+            { name: "Jordan", description: "Loves painting and hiking.", interests: ["Painting", "Hiking", "Traveling"], hobbies: ["Cooking", "Music"], profession: "Artist", img: "https://via.placeholder.com/150" },
+            { name: "Parker", description: "Passionate about traveling and cooking.", interests: ["Traveling", "Cooking", "Music"], hobbies: ["Hiking", "Painting"], profession: "Chef", img: "https://via.placeholder.com/150" }
+        ];
+
+        const heartState = {}; // To track heart icon state
+
         function toggleMenu() {
             var menuContent = document.getElementById('menuContent');
             menuContent.classList.toggle('show');
         }
 
         function toggleHeart(event) {
-            var heart = event.target;
-            heart.classList.toggle('filled');
+            event.stopPropagation(); // Prevent popup from appearing
+            const heart = event.target;
+            const profileDiv = heart.parentElement;
+            const profileName = profileDiv.getAttribute('data-name');
+
+            if (!heartState[profileName]) {
+                heartState[profileName] = true;
+                heart.classList.add('filled');
+            } else {
+                heartState[profileName] = false;
+                heart.classList.remove('filled');
+            }
         }
 
         function toggleFriendMode() {
-            var initialProfiles = document.querySelector('.initial-profiles');
-            var friendModeProfiles = document.querySelector('.friend-mode');
-            var friendModeToggle = document.getElementById('friendModeToggle');
+            const initialProfiles = document.querySelector('.initial-profiles');
+            const friendModeProfiles = document.querySelector('.friend-mode');
+            const friendModeToggle = document.getElementById('friendModeToggle');
             
             if (friendModeToggle.checked) {
                 initialProfiles.classList.remove('active');
                 friendModeProfiles.classList.add('active');
+                loadFriendProfiles();
             } else {
                 friendModeProfiles.classList.remove('active');
                 initialProfiles.classList.add('active');
             }
+
+            // Reapply heart states for the currently visible profiles
+            applyHeartStates();
         }
 
         function toggleAIRecommendation() {
@@ -303,6 +329,17 @@
                 const profileDiv = createProfileDiv(profile);
                 profilesContainer.appendChild(profileDiv);
             });
+            applyHeartStates();
+        }
+
+        function loadFriendProfiles() {
+            const friendProfilesContainer = document.getElementById('friendProfilesContainer');
+            friendProfilesContainer.innerHTML = '';
+            friendUserProfiles.forEach(profile => {
+                const profileDiv = createProfileDiv(profile);
+                friendProfilesContainer.appendChild(profileDiv);
+            });
+            applyHeartStates();
         }
 
         async function generateSortedProfiles() {
@@ -338,6 +375,7 @@
                 const profileDiv = createProfileDiv(profile);
                 profilesContainer.appendChild(profileDiv);
             });
+            applyHeartStates();
         }
 
         function createProfileDiv(profile) {
@@ -372,11 +410,25 @@
             profileDiv.appendChild(descriptionDiv);
             profileDiv.appendChild(heart);
 
-            profileDiv.addEventListener('click', function () {
-                showPopup(profile);
+            profileDiv.addEventListener('click', function (event) {
+                if (!event.target.classList.contains('heart')) {
+                    showPopup(profile);
+                }
             });
 
             return profileDiv;
+        }
+
+        function applyHeartStates() {
+            document.querySelectorAll('.profile').forEach(profileDiv => {
+                const profileName = profileDiv.getAttribute('data-name');
+                const heart = profileDiv.querySelector('.heart');
+                if (heartState[profileName]) {
+                    heart.classList.add('filled');
+                } else {
+                    heart.classList.remove('filled');
+                }
+            });
         }
 
         function showPopup(profile) {
@@ -389,9 +441,13 @@
         function closePopup() {
             document.getElementById('profilePopup').style.display = 'none';
         }
-
+        function toggleMenu() {
+        const menuContent = document.getElementById('menuContent');
+        menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+        }
         // Load initial profiles on page load
         loadInitialProfiles();
     </script>
 </body>
 </html>
+

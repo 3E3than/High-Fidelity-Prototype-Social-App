@@ -29,7 +29,7 @@
 </body>
 </html> -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -50,9 +50,9 @@
             text-align: center;
             width: 100%;
             max-width: 800px;
-        }
+        } -->
 
-        .logo {
+        <!-- .logo {
             width: 100px;
             height: 100px;
             background-color: #3498db;
@@ -88,6 +88,102 @@
         .check-in-button:hover {
             background-color: #27ae60;
         }
+    </style> -->
+<!-- </head> -->
+<!-- <body> -->
+    <!-- <div class="container"> -->
+        <!-- Circle Logo -->
+        <!-- <div class="logo">Logo</div> -->
+
+        <!-- Image instead of Map -->
+        <!-- <div class="image"></div> -->
+
+        <!-- Check In Button -->
+        <!-- <button id="checkInButton" class="check-in-button">Check In</button> -->
+    <!-- </div> -->
+
+    <!-- <script> -->
+        <!-- //document.addEventListener('DOMContentLoaded', async function () {
+        //const bars = await fetch ("./bars.json").then(response=>response.json());
+        //const bars = await fetch ("./bars.json").then(response=>response.json());
+        //}
+        // Handle the Check In button click event
+        document.getElementById('checkInButton').addEventListener('click', () => {
+            alert('You have checked in!');
+        }); -->
+    <!-- </script> -->
+<!-- </body> -->
+<!-- </html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Bar Finder</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .image {
+            height: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .check-in-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .check-in-button:hover {
+            background-color: #27ae60;
+        }
+
+        .bar-info {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -95,23 +191,67 @@
         <!-- Circle Logo -->
         <div class="logo">Logo</div>
 
-        <!-- Image instead of Map -->
-        <div class="image"></div>
+        <!-- Image -->
+        <div class="image" id="image"></div>
+
+        <!-- Bar Info -->
+        <div class="bar-info" id="barInfo">
+            <h2 id="barName"></h2>
+            <p><strong>People Count:</strong> <span id="barPplCount"></span></p>
+            <p><strong>Logo:</strong> <span id="barLogo"></span></p>
+        </div>
 
         <!-- Check In Button -->
         <button id="checkInButton" class="check-in-button">Check In</button>
     </div>
 
     <script>
-        //document.addEventListener('DOMContentLoaded', async function () {
-        //const bars = await fetch ("./bars.json").then(response=>response.json());
-        //const bars = await fetch ("./bars.json").then(response=>response.json());
-        //}
-        // Handle the Check In button click event
-        document.getElementById('checkInButton').addEventListener('click', () => {
-            alert('You have checked in!');
+        document.addEventListener('DOMContentLoaded', async function () {
+            const bars = await fetch('./bars.json').then(response => response.json());
+
+            const imageDiv = document.getElementById('image');
+            const barInfoDiv = document.getElementById('barInfo');
+            const barName = document.getElementById('barName');
+            const barPplCount = document.getElementById('barPplCount');
+            const barLogo = document.getElementById('barLogo');
+            const checkInButton = document.getElementById('checkInButton');
+
+            let currentBar = null;
+
+            function updateBarInfo(bar) {
+                currentBar = bar;
+                imageDiv.style.backgroundImage = 'url("your-image-url.jpg")'; // Replace with bar-specific image if available
+                barName.textContent = bar.name;
+                barPplCount.textContent = bar.pplCount;
+                barLogo.textContent = bar.logo;
+                barInfoDiv.style.display = 'block';
+            }
+//have an id & get it from the url, come back as string so cast my int id
+// look through array till you find ,, array.find or a for loop, and find the one with the right id
+// that's the bar we want to render
+            // Display the first bar's information initially
+            if (bars.length > 0) {
+                updateBarInfo(bars[0]);
+            }
+
+            // Handle the Check In button click event
+            checkInButton.addEventListener('click', () => {
+                if (currentBar) {
+                    alert(`You have checked in to ${currentBar.name}!`);
+                } else {
+                    alert('Please select a bar first.');
+                }
+            });
+
+            // Example function to simulate selecting different bars
+            // In a real application, this would be based on user interaction (e.g., clicking a list of bars)
+            document.addEventListener('click', () => {
+                // Simulate selecting the second bar for demonstration
+                if (bars.length > 1) {
+                    updateBarInfo(bars[1]);
+                }
+            });
         });
     </script>
 </body>
 </html>
-
