@@ -36,6 +36,8 @@ header {
 header h1 {
     font-size: 24px;
     margin: 0;
+    flex-grow: 1;
+    text-align: center;
 }
 
 .back-button, .menu-button {
@@ -391,6 +393,99 @@ input:checked + .slider:before {
     margin-bottom: 10px;
     cursor: pointer;
 }
+
+.text-center a {
+    color: white; /* Set color of Create Account link to white */
+    display: block;
+    margin-bottom: 10px;
+}
+.text-center .forgot-link {
+    color: #ffffff; /* Set color of Forgot Username/Password link */
+}
+
+.forgot-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .forgot-button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .message {
+            margin-top: 20px;
+            color: green;
+        }
+
+        .email-sent-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .email-sent-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+        }
 
 .settings-option h5 {
     margin: 0;
