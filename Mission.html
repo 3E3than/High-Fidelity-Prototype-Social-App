@@ -3,63 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Mission</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 80px 20px 20px; /* Adjust padding to accommodate fixed header */
-            text-align: center;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .mission-box {
-            background: #fff;
-            margin: 20px auto;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            border-radius: 10px;
-        }
-    </style>
 </head>
 <body>
-
-<header>
-    <button class="back-button" onclick="history.back()">&lt;</button>
-    <h1>Mission</h1>
-    <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
-    <div class="menu-content" id="menuContent">
-        <a href="home.html">Home</a>
-        <a href="profile.html">Profile</a>
-        <a href="settings.html">Settings</a>
-        <a href="faq.html">FAQs</a>
-        <a href="mission.html">Missons</a>
+    <header>
+        <button class="back-button" onclick="history.back()">&lt;</button>
+        <h1>Mission</h1>
+        <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+        <div class="menu-content" id="menuContent">
+            <a href="home.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="settings.html">Settings</a>
+            <a href="faq.html">FAQs</a>
+            <a href="mission.html">Missons</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="mission-box">
+            <h2>Our Mission</h2>
+            <p>Our mission is to connect people in a live, more personal way. We aim to boost users' confidence in approaching others without the uncertainty of their relationship status.</p>
+        </div>
     </div>
-</header>
-
-<div class="container">
-    <div class="mission-box">
-        <h2>Our Mission</h2>
-        <p>Our mission is to connect people in a live, more personal way. We aim to boost users' confidence in approaching others without the uncertainty of their relationship status.</p>
-    </div>
-</div>
-
-<script>
-    function toggleMenu() {
-        const menuContent = document.getElementById('menuContent');
-        menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
-    }
-</script>
+    <script>
+        function toggleMenu() {
+            const menuContent = document.getElementById('menuContent');
+            menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
 </body>
 </html>
-
