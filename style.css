@@ -777,6 +777,7 @@ input:checked + .slider:before {
     color: white;
     font-size: 24px;
     font-weight: bold;
+
 }
 
 .logo-img {
@@ -790,6 +791,7 @@ input:checked + .slider:before {
     align-items: center;
     justify-content: center;
     background-color: #3498db;
+    margin: 0 auto; /* Center the image */
 }
 
 .logo-img img {
@@ -797,23 +799,26 @@ input:checked + .slider:before {
     height: auto;
     display: flex;
     align-items: center;
+
 }
 
 .description {
     font-size: 16px;
-    color: #555;
+    color: white; /* White text */
+    font-weight: bold; /* Bold text */
     margin-bottom: 20px;
-    text-align: center;
+
 }
 
 .image {
     width: 400px;
     height: 200px;
-    margin-bottom: 20px;
+    margin-bottom: 40px; /* Add more space between the image and the check-in button */
     background-size: cover;
     background-position: center;
     border-radius: 5px;
-    overflow: hidden;
+    margin: 0 auto; /* Center the image */
+
 }
 
 .check-in-button {
@@ -824,6 +829,9 @@ input:checked + .slider:before {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    display: block;
+    margin: 0 auto; /* Center the button */
+
 }
 
 .check-in-button:hover {
