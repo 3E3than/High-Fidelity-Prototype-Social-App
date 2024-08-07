@@ -4,69 +4,86 @@
         "pplCount": "45",
         "name": "KIPS",
         "logoURL": "assets/kips_logo.jpg",
-        "imageURL": "assets/kips.png"
+        "imageURL": "assets/kips.png",
+        "description": "A cozy spot known for its great atmosphere and diverse drink selection."
+
     },
     {
         "id": 2,
         "pplCount": "100",
         "name": "CALIS SPORTS BAR & KITCHEN",
         "logoURL": "assets/calis_logo.png",
-        "imageURL": "assets/calis.png"
+        "imageURL": "assets/calis.png",
+        "description": "A lively sports bar with delicious food and plenty of screens for game day."
+
     },
     {
         "id": 3,
         "pplCount": "20",
         "name": "RALEIGHS",
         "logoURL": "assets/raleighs_logo.jpg",
-        "imageURL": "assets/raleighs.png"
+        "imageURL": "assets/raleighs.png",
+        "description": "A classic bar offering a great selection of beers and a relaxing ambiance."
+
     },
     {
         "id": 4,
         "pplCount": "13",
         "name": "TIPSEA",
         "logoURL": "assets/tipsea_logo.png",
-        "imageURL": "assets/tipsea.png"
+        "imageURL": "assets/tipsea.png",
+        "description": "A trendy spot with creative cocktails and a vibrant crowd."
+
     },
     {
         "id": 5,
         "pplCount": "165",
         "name": "TUPPER & REED",
         "logoURL": "assets/tupper_logo.png",
-        "imageURL": "assets/tupper.png"
+        "imageURL": "assets/tupper.png",
+        "description": "An upscale bar with an extensive drink menu and elegant decor."
     },
     {
         "id": 6,
         "pplCount": "17",
         "name": "TAP IN LOUNGE",
-        "logoURL": "tapin_logo.png",
-        "imageURL": "assets/tapin.png"
+        "logoURL": "assets/tapin_logo.png",
+        "imageURL": "assets/tapin.png",
+        "description": "A relaxed lounge known for its craft beers and live music."
     },
     {
         "id": 7,
         "pplCount": "2",
         "name": "JUPITER",
-        "logoURL": "jupiter_logo.jpg",
-        "imageURL": "assets/jupiter.png"
+        "logoURL": "assets/jupiter_logo.jpg",
+        "imageURL": "assets/jupiter.png",
+        "description": "A small but charming bar with a unique space-themed decor."
+
     },
     {
         "id": 8,
         "pplCount": "55",
         "name": "TRIPLE ROCK BREWERY",
-        "logoURL": "triplerock_logo.png",
-        "imageURL": "assets/triplerock.png"
+        "logoURL": "assets/triplerock_logo.jpg",
+        "imageURL": "assets/triplerock.png",
+        "description": "A brewery offering a variety of house-made beers and a lively atmosphere."
+
     },
     {
         "id": 9,
         "pplCount": "1",
         "name": "CORNERSTONE",
-        "logoURL": "corner_logo.png",
-        "imageURL": "assets/corner.png"
+        "logoURL": "assets/corner_logo.jpg",
+        "imageURL": "assets/corner.png",
+        "description": "An intimate bar perfect for quiet conversations and fine wines."
+
     },
     {
         "id": 10,
         "pplCount": "0",
         "name": "SPATS",
-        "logoURL": "spats_logo.png",
-        "imageURL": "assets/spats.png"
+        "logoURL": "assets/spats_logo.png",
+        "imageURL": "assets/spats.png",
+        "description": "A laid-back bar with a focus on comfort food and local brews."
     }
 ]

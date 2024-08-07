@@ -217,6 +217,9 @@
             border-radius: 50%;
             /* Makes the container circular */
             overflow: hidden;
+            object-fit: cover;
+            /* Ensures image covers the area without distortion */
+
             /* Hides overflow to keep the image within the circle */
             margin-bottom: 20px;
             display: flex;
@@ -235,6 +238,14 @@
             /* Removes any whitespace below the image */
         }
 
+        .description {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+
         .image {
             /* height: 400px;
                 width: 100%;
@@ -246,6 +257,8 @@
             height: 200px;
             /* Set the height you want */
             margin-bottom: 20px;
+            background-size: cover;
+            background-position: center;
             background-size: cover;
             background-position: center;
             border-radius: 5px;
@@ -285,7 +298,8 @@
         <div class="logo-img">
             <img id="logoImage" src="" alt="Bar Logo">
         </div>
-
+        <!-- Description -->
+        <div id="description" class="description"></div>
 
         <!-- Bar Info -->
         <!-- <div class="bar-info" id="barInfo">
@@ -326,9 +340,13 @@
                 //const barInfo = document.getElementById('barInfo');
                 const imageDiv = document.getElementById('image');
                 document.getElementById('logoImage').src = bar.logoURL;
+                document.getElementById('description').textContent = bar.description;
 
                 // Display the image
                 imageDiv.style.backgroundImage = `url("${bar.imageURL}")`;
+
+                //console.log('Logo URL:', bar.logoURL);
+                console.log('Image URL:', bar.description);
 
                 // Populate bar information
                 //document.getElementById('barName').textContent = bar.name;
