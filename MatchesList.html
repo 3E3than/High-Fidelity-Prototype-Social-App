@@ -21,22 +21,15 @@
         </div>
     </header>
     <div class="container">
-        <div class="profile" data-name="User Name" data-description="This is a detailed description of the user. It gives a comprehensive overview of who they are and what they do." data-img="https://via.placeholder.com/150">
-            <img src="Profile1.jpg" alt="User Photo">
+        <div class="profile" data-name="Morgan" data-description="Travels often and enjoys music." data-img="Profile3.jpg">
+            <img src="Profile3.jpg" alt="Morgan's Photo">
             <div class="profile-description">
-                <h2>User Name</h2>
-                <p>This is a short description of the user. It gives a brief overview of who they are and what they do.</p>
+                <h2>Morgan</h2>
+                <p>Travels often and enjoys music.</p>
             </div>
             <button class="invite-btn" onclick="navigateToEndingPage(event)">Invite</button>
         </div>
-        <div class="profile" data-name="Another User" data-description="This is another detailed description of a different user. It provides similar comprehensive information as the previous profile." data-img="https://via.placeholder.com/150">
-            <img src="Profile2.jpg" alt="User Photo">
-            <div class="profile-description">
-                <h2>Another User</h2>
-                <p>This is another description of a different user. It provides similar information as the previous profile.</p>
-            </div>
-            <button class="invite-btn" onclick="navigateToEndingPage(event)">Invite</button>
-        </div>
+        <!-- Other profiles can be added here -->
     </div>
     <div class="popup" id="popup">
         <img id="popupImg" src="" alt="User Photo">
@@ -76,6 +69,15 @@
         function toggleMenu() {
             const menuContent = document.getElementById('menuContent');
             menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+        }
+
+        window.onload = function() {
+            const inviteClicked = localStorage.getItem("inviteClicked");
+            if (inviteClicked === "Morgan") {
+                document.querySelectorAll('.profile[data-name="Morgan"] .invite-btn')[0].disabled = true;
+                document.querySelectorAll('.profile[data-name="Morgan"] .invite-btn')[0].style.backgroundColor = "#ccc";
+                localStorage.removeItem("inviteClicked");
+            }
         }
     </script>
 </body>
