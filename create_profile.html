@@ -6,24 +6,83 @@
     <title>Profile</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            background-color: orange;
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
+
+        body {
+            background-image: url('background.jpeg'); /* Use the actual path to your image */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent the background image from repeating */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
         .profile-container {
+            width: 100%;
             max-width: 400px;
-            margin: 100px auto;
             padding: 20px;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.5); /* More transparent */
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        
+        .card {
+            margin: 0 auto;
+        }
+
+        .profile-name-input {
+            margin-bottom: 16px;
+        }
+
+        .profile-card {
+            max-width: 400px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: center;
+        }
+
+        #profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 6px;
+            margin: 12px auto;
+            display: block;
+        }
+
+        #video {
+            width: 100%;
+            background-color: black;
         }
     </style>
 </head>
 <body>
+<header>
+    <button class="back-button" onclick="history.back()">&lt;</button>
+    <h1>Create Your Profile</h1>
+    <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+    <div class="menu-content" id="menuContent">
+        <a href="faq.html">FAQs</a>
+        <a href="mission.html">Mission</a>
+    </div>
+</header>
     <div class="profile-container">
         <h2 class="text-center">Profile</h2>
-        <form>
+        <form id="datingInfoForm">
+            <div role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profilePicModal" id="profile-click">
+                <img id="profile-pic" src="profile.svg" />
+            </div>
             <div class="form-group">
                 <label for="gender">Gender</label>
                 <select class="form-control" id="gender">
@@ -40,11 +99,84 @@
                 <label for="interests">Interests</label>
                 <input type="text" class="form-control" id="interests" placeholder="Enter interests">
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            <button type="submit" class="btn btn-primary btn-block">Create Profile</button>
         </form>
     </div>
+    <div
+        class="modal fade"
+        id="profilePicModal"
+        tabindex="-1"
+        aria-labelledby="profilePicModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="profilePicModalLabel">Change profile pic</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-capture-window"></button>
+            </div>
+            <div class="modal-body">
+              <label for="profile-pic-file" class="form-label"> Say Cheese! </label>
 
+              <video id="video" autoplay></video>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="capture-btn">Capture and Set Profile Pic</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script>
+        var videostream;
+        window.onload = () => {
+            localStorage.setItem("currentWindow", "profile.html");
+            //document.getElementById("name-input").value = localStorage.getItem("username");
+            //if (localStorage.getItem("alreadyTakenPhoto")) {
+            if (localStorage.getItem("photo")) {
+            document.getElementById("profile-pic").src = localStorage.getItem("photo");
+            }
+        };
+        function toggleMenu() {
+            const menuContent = document.getElementById('menuContent');
+            menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+        }
+        document.getElementById('datingInfoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            window.location.href = 'bar_landing_page.html';
+        });
+        document.getElementById("profile-click").addEventListener("click", openCaptureWindow);
+        function openCaptureWindow() {
+            navigator.mediaDevices.getUserMedia({audio: false, video: true}).then((stream) => {
+            //videostream = stream;
+            video.srcObject = stream;
+            videostream = stream;
+            }).catch((err) => {
+            alert(err);
+            });
+        }
+        document.getElementById("close-capture-window").addEventListener("click", closeCaptureWindow);
+        function closeCaptureWindow() {
+            //video.srcObject = null;
+            videostream.getTracks()[0].stop();
+            videostream.stop();
+        }
+        document.getElementById("capture-btn").onclick = function () {
+            const canvas = document.createElement("canvas");
+            canvas.width = 512; 
+            canvas.height = 512;
+            canvas.getContext("2d").drawImage(document.getElementById("video"), 0, 0, 512, 512);
+            localStorage.setItem("photo", canvas.toDataURL("image/jpeg"));
+            //localStorage.setItem("alreadyTakenPhoto", "true");
+            document.getElementById("profile-pic").src = localStorage.getItem("photo");
+            document.getElementById("close-capture-window").click();
+        };
+    </script>
     <!-- Bootstrap JS and dependencies -->
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
