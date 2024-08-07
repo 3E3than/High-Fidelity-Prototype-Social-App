@@ -70,17 +70,13 @@
 </div>
     
 <script>
-    window.onload = (event) => {
-        if (localStorage.getItem("photo")) {
-          document.getElementById("currentUserImg").src = localStorage.getItem("photo");
-        }
-    }
     const currentUserProfile = {
-        name: "Alex",
-        img: "ProfileAlex.jpg", // Add the current user image here
-        interests: ["Hiking", "Reading", "Cooking"],
-        hobbies: ["Photography", "Traveling"],
-        profession: "Software Engineer"
+        name: localStorage.getItem("name"),
+        img: localStorage.getItem("photo"),
+        interests: JSON.parse(localStorage.getItem("interests")) || [],
+        gender: localStorage.getItem("gender"),
+        age: localStorage.getItem("age"),
+        bio: localStorage.getItem("bio")
     };
 
     const otherUserProfiles = [
@@ -152,7 +148,6 @@
 
     function meetAtBar() {
         window.location.href = 'MatchesList.html';
-        // Simulate clicking invite button (can be adjusted based on actual functionality)
         localStorage.setItem("inviteClicked", "Morgan");
     }
 
@@ -172,8 +167,8 @@
     }
 
     function closeHeartPopup() {
-    document.getElementById('heartPopup').style.display = 'none';
-}
+        document.getElementById('heartPopup').style.display = 'none';
+    }
 
     function later() {
         closeHeartPopup();
@@ -189,7 +184,6 @@
             loadInitialProfiles();
         }
 
-        // Reapply heart states for the currently visible profiles
         applyHeartStates();
     }
 
@@ -223,7 +217,6 @@
     }
 
     async function generateSortedProfiles() {
-        // Use fetch to call the Noggin API for sorted profiles
         const response = await fetch(
           'https://noggin.rea.gent/curved-rabbit-5970',
           {
@@ -232,21 +225,16 @@
               'Content-Type': 'application/json',
               Authorization: 'Bearer rg_v1_4wgriw1jfbod0eub1pnab0dvshzoggz5c8kz_ngk',
             },
-                body: JSON.stringify({
-                    userProfile: JSON.stringify(currentUserProfile),
-                    otherProfiles: JSON.stringify(otherUserProfiles)
-                }),
-            }
+            body: JSON.stringify({
+                userProfile: JSON.stringify(currentUserProfile),
+                otherProfiles: JSON.stringify(otherUserProfiles)
+            }),
+          }
         );
 
         const sortedProfiles = await response.json();
-        console.log("Sorted Profiles:", sortedProfiles);
-
-        // Update otherUserProfiles with sorted profiles
         otherUserProfiles.length = 0;
         sortedProfiles.forEach(profile => otherUserProfiles.push(profile));
-
-        // Display sorted profiles
         const profilesContainer = document.getElementById('profilesContainer');
         profilesContainer.innerHTML = '';
         sortedProfiles.forEach(profile => {
@@ -255,6 +243,10 @@
         });
         applyHeartStates();
     }
+
+    
+
+    
 
     function createProfileDiv(profile) {
         const profileDiv = document.createElement('div');
@@ -320,7 +312,6 @@
         document.getElementById('profilePopup').style.display = 'none';
     }
 
-    // Load initial profiles on page load
     loadInitialProfiles();
 </script>
 </body>
