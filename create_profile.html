@@ -278,6 +278,9 @@
 </div>
 <script>
     window.onload = (event) => {
+        if (localStorage.getItem("photo")) {
+          document.getElementById("profile-pic").src = localStorage.getItem("photo");
+        }
         if (localStorage.getItem("name")) document.getElementById("name").value = localStorage.getItem("name");
         if (localStorage.getItem("gender")) document.getElementById("gender").value = localStorage.getItem("gender");
         if (localStorage.getItem("age")) document.getElementById("age").value = localStorage.getItem("age");
