@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +7,19 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <header>
         <button class="back-button" onclick="window.location.href='bar_landing_page.html'">&lt;</button>
         <h1>Bar Finder</h1>
+        <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+        <div class="menu-content" id="menuContent">
+            <a href="bar_landing_page.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="settings.html">Settings</a>
+            <a href="faq.html">FAQs</a>
+            <a href="mission.html">Mission</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
     </header>
     <div class="container text-center">
         <!-- Circle Logo -->
@@ -62,7 +69,16 @@
                 }
             });
         });
+
+        function toggleMenu() {
+            const menuContent = document.getElementById('menuContent');
+            menuContent.classList.toggle('show');
+        }
+
+        function logout() {
+            localStorage.clear(); // Clear all local storage data
+            window.location.href = 'LoginScreen2.html'; // Redirect to login page
+        }
     </script>
 </body>
-
 </html>
