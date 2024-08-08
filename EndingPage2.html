@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Confirmation</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            text-align: center;
+            color: white;
+        }
+        .message {
+            margin-top: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="meetingConfirmation"></h1>
+        <div class="message">
+            <p>What are you still doing here?</p>
+            <p>Go meet them now!</p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const generatedImageUrl = localStorage.getItem("generatedImageUrl");
+            const matchedUserName = localStorage.getItem("matchedUserName");
+
+            document.body.style.backgroundImage = `url('${generatedImageUrl}')`;
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+
+            const meetingConfirmation = document.getElementById("meetingConfirmation");
+            meetingConfirmation.innerText = `You and ${matchedUserName} Both Agreed to meet at the bar!`;
+        });
+    </script>
+</body>
+</html>
