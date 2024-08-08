@@ -19,7 +19,6 @@
         <a href="faq.html">FAQs</a>
         <a href="mission.html">Mission</a>
         <a href="#" onclick="logout()">Logout</a>
-
     </div>
 </header>
 
@@ -50,11 +49,17 @@
     </div>
 </div>
     
-<div class="popup" id="profilePopup">
-    <img src="" alt="Profile Photo" id="popupImg">
-    <h2 id="popupName"></h2>
-    <p id="popupbio"></p>
-    <button class="close-btn" onclick="closePopup()">Close</button>
+<div class="popup" id="profilePopup" style="display: none;">
+    <div class="popup-content">
+        <img src="" alt="Profile Photo" id="popupImg">
+        <h2 id="popupName"></h2>
+        <p id="popupBio"></p>
+        <p id="popupInterests"></p>
+        <p id="popupAge"></p>
+        <p id="popupProfession"></p>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+        <span class="heart" id="popupHeart" onclick="toggleHeartFromPopup()">&#9829;</span>
+    </div>
 </div>
 
 <div id="heartPopup" class="heart-popup" style="display: none;">
@@ -81,20 +86,20 @@
         bio: localStorage.getItem("bio")
     };
 
-    const otherUserProfiles = [
-        { name: "Taylor", bio: "Enjoys reading and gaming.", interests: ["Reading", "Gaming", "Cooking"], profession: "Writer", img: "Profile1.jpg" },
-        { name: "Jamie", bio: "Likes hiking and cooking.", interests: ["Hiking", "Cooking", "Music"], profession: "Graphic Designer", img: "Profile2.jpg" },
-        { name: "Morgan", bio: "Travels often and enjoys music.", interests: ["Hiking", "Reading", "Cooking"], profession: "Data Scientist", img: "Profile3.jpg" },
-        { name: "James" , bio: "Likes watching movies and running" , interests:["Movies" , "Running" , "Fitness"] , profession: "Business Analyst" , img: "Profile1.jpg"},
-        { name: "Cameron", bio: "Tech enthusiast and coder.", interests: ["Programming", "Gaming", "Music"], profession: "Software Developer", img: "Profile1.jpg" },
-        { name: "Charlie", bio: "Fitness freak and health coach.", interests: ["Fitness", "Cooking", "Meditation"], profession: "Personal Trainer", img: "Profile2.jpg" },
-        { name: "Peyton", bio: "Creative artist and designer.", interests: ["Painting", "Design", "Photography"], profession: "Graphic Designer", img: "Profile1.jpg" }
+     const otherUserProfiles = [
+        { name: "Taylor", bio: "Enjoys reading and gaming.", interests: ["Reading", "Gaming", "Cooking"], profession: "Writer", img: "Profile1.jpg", age: 28 },
+        { name: "Jamie", bio: "Likes hiking and cooking.", interests: ["Hiking", "Cooking", "Music"], profession: "Graphic Designer", img: "Profile2.jpg", age: 30 },
+        { name: "Morgan", bio: "Travels often and enjoys music.", interests: ["Hiking", "Reading", "Cooking"], profession: "Data Scientist", img: "Profile3.jpg", age: 27 },
+        { name: "James" , bio: "Likes watching movies and running", interests:["Movies" , "Running" , "Fitness"], profession: "Business Analyst", img: "Profile1.jpg", age: 32 },
+        { name: "Cameron", bio: "Tech enthusiast and coder.", interests: ["Programming", "Gaming", "Music"], profession: "Software Developer", img: "Profile1.jpg", age: 25 },
+        { name: "Charlie", bio: "Fitness freak and health coach.", interests: ["Fitness", "Cooking", "Meditation"], profession: "Personal Trainer", img: "Profile2.jpg", age: 29 },
+        { name: "Peyton", bio: "Creative artist and designer.", interests: ["Painting", "Design", "Photography"], profession: "Graphic Designer", img: "Profile1.jpg", age: 26 }
     ];
 
     const friendUserProfiles = [
-        { name: "Robin", bio: "Nature lover and explorer.", interests: ["Hiking", "Nature", "Bird Watching"], profession: "Environmental Scientist", img: "Profile2.jpg" },
-        { name: "Jordan", bio: "Tech enthusiast and startup founder.", interests: ["Programming", "Startups", "Gaming"], profession: "Entrepreneur", img: "Profile3.jpg" },
-        { name: "Alexis", bio: "Musician and artist.", interests: ["Music", "Art", "Writing"], profession: "Musician", img: "Profile1.jpg" }
+        { name: "Robin", bio: "Nature lover and explorer.", interests: ["Hiking", "Nature", "Bird Watching"], profession: "Environmental Scientist", img: "Profile2.jpg", age: 31 },
+        { name: "Jordan", bio: "Tech enthusiast and startup founder.", interests: ["Programming", "Startups", "Gaming"], profession: "Entrepreneur", img: "Profile3.jpg", age: 28 },
+        { name: "Alexis", bio: "Musician and artist.", interests: ["Music", "Art", "Writing"], profession: "Musician", img: "Profile1.jpg", age: 24 }
     ];
 
     const heartState = {}; // To track heart icon state
@@ -104,21 +109,26 @@
         menuContent.classList.toggle('show');
     }
 
+     otherUserProfiles.forEach(profile => {
+        heartState[profile.name] = false;
+    });
+    friendUserProfiles.forEach(profile => {
+        heartState[profile.name] = false;
+    });
+
+
     function toggleHeart(event) {
         event.stopPropagation(); // Prevent popup from appearing
         const heart = event.target;
-        const profileDiv = heart.parentElement;
-        const profileName = profileDiv.getAttribute('data-name');
+        const profileName = heart.getAttribute('data-name');
 
-        if (!heartState[profileName]) {
-            heartState[profileName] = true;
-            heart.classList.add('filled');
-            if (profileName === 'Morgan' || profileName === 'Peyton') {
-                showHeartPopup(profileName);
-            }
-        } else {
-            heartState[profileName] = false;
-            heart.classList.remove('filled');
+        heartState[profileName] = !heartState[profileName];
+        heart.classList.toggle('filled', heartState[profileName]);
+
+        applyHeartStates(); // Ensure the heart state is updated in both profile div and popup
+
+        if (profileName === 'Morgan' || profileName === 'Peyton') {
+            showHeartPopup(profileName);
         }
     }
 
@@ -280,32 +290,31 @@
         const profileDiv = document.createElement('div');
         profileDiv.classList.add('profile');
         profileDiv.setAttribute('data-name', profile.name);
-        profileDiv.setAttribute('data-bio', profile.bio);
         profileDiv.setAttribute('data-img', profile.img);
+        profileDiv.setAttribute('data-bio', profile.bio);
+        profileDiv.setAttribute('data-interests', profile.interests);
+        profileDiv.setAttribute('data-age', profile.age);
+        profileDiv.setAttribute('data-profession', profile.profession);
 
         const img = document.createElement('img');
         img.src = profile.img;
         img.alt = 'User Photo';
 
-        const bioDiv = document.createElement('div');
-        bioDiv.classList.add('profile-bio');
-
         const name = document.createElement('h2');
         name.textContent = profile.name;
 
-        const bio = document.createElement('p');
-        bio.textContent = profile.bio;
-
-        bioDiv.appendChild(name);
-        bioDiv.appendChild(bio);
+        const interests = document.createElement('p');
+        interests.textContent = 'Interests: ' + profile.interests.join(', ');
 
         const heart = document.createElement('span');
         heart.classList.add('heart');
-        heart.innerHTML = '&#9825;';
+        heart.innerHTML = '&#9829;';
+        heart.setAttribute('data-name', profile.name); // Attach data-name attribute
         heart.addEventListener('click', toggleHeart);
 
         profileDiv.appendChild(img);
-        profileDiv.appendChild(bioDiv);
+        profileDiv.appendChild(name);
+        profileDiv.appendChild(interests);
         profileDiv.appendChild(heart);
 
         profileDiv.addEventListener('click', function (event) {
@@ -317,24 +326,39 @@
         return profileDiv;
     }
 
+
     function applyHeartStates() {
         document.querySelectorAll('.profile').forEach(profileDiv => {
-            const profileName = profileDiv.getAttribute('data-name');
-            const heart = profileDiv.querySelector('.heart');
-            if (heartState[profileName]) {
-                heart.classList.add('filled');
-            } else {
-                heart.classList.remove('filled');
-            }
-        });
+        const profileName = profileDiv.getAttribute('data-name');
+        const heart = profileDiv.querySelector('.heart');
+        heart.classList.toggle('filled', heartState[profileName]);
+    });
+
+        const popupHeart = document.getElementById('popupHeart');
+        const popupProfileName = popupHeart.getAttribute('data-name');
+        if (popupProfileName) {
+            popupHeart.classList.toggle('filled', heartState[popupProfileName]);
+        }
     }
 
     function showPopup(profile) {
-        document.getElementById('popupName').innerText = profile.name;
-        document.getElementById('popupbio').innerText = profile.bio;
-        document.getElementById('popupImg').src = profile.img;
-        document.getElementById('profilePopup').style.display = 'block';
-    }
+    document.getElementById('popupName').innerText = profile.name;
+    document.getElementById('popupBio').innerText = profile.bio;
+    document.getElementById('popupImg').src = profile.img;
+    document.getElementById('popupInterests').innerText = 'Interests: ' + profile.interests.join(', ');
+    document.getElementById('popupAge').innerText = 'Age: ' + profile.age;
+    document.getElementById('popupProfession').innerText = 'Profession: ' + profile.profession;
+
+    const popupHeart = document.getElementById('popupHeart');
+    popupHeart.classList.toggle('filled', heartState[profile.name]);
+    popupHeart.setAttribute('data-name', profile.name); // Add data-name attribute
+    popupHeart.onclick = function (event) {
+        toggleHeart(event);
+        applyHeartStates(); // Ensure the heart state is updated in the profile div as well
+    };
+
+    document.getElementById('profilePopup').style.display = 'block';
+}
 
     function closePopup() {
         document.getElementById('profilePopup').style.display = 'none';

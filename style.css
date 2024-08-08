@@ -190,6 +190,17 @@ header h1 {
     max-width: 800px;
 }
 
+.profile h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.profile p {
+    margin: 0;
+    font-size: 14px;
+}
+
+
 .heart, .invite-btn {
     cursor: pointer;
     font-size: 24px;
@@ -200,6 +211,21 @@ header h1 {
 .heart.filled {
     color: red;
 }
+.popup .heart {
+    font-size: 24px;
+    color: lightgray;
+    cursor: pointer;
+}
+
+.popup .heart.filled {
+    color: red;
+}
+
+
+.profile .heart.filled {
+    color: red;
+}
+
 
 .invite-btn:hover {
     color: #0056b3;
@@ -325,11 +351,21 @@ header h1 {
     margin-bottom: 20px;
 }
 
-.popup .close-btn, .popup .invite-btn {
+/*.popup .close-btn, .popup .invite-btn {
     display: inline-block;
     background: #007BFF;
     color: #fff;
     padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}*/
+
+.popup .close-btn, .popup .invite-btn {
+    margin-top: 20px;
+    padding: 5px 10px;
+    background: #007bff;
+    color: white;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
 }
