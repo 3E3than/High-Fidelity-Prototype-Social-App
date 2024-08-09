@@ -1,6 +1,21 @@
 ###########################################################
 ## Using the Over Drinks Web App High-Fidelity Prototype ##
 ###########################################################
+IMPORTANT (SETUP FOR INSTRUCTOR/GRADER):
+  If you are an instructor testing/grading the prototype, please follow the instructions below to start the prototype:
+  1. Clone the repository or download and extract the .zip file onto your local machine.
+  2. Navigate to the over-drinks directory - the directory should contain this very README file.
+  3. Open a terminal window and navigate to over-drinks directory, and verify this through ls -al, and look for README.txt
+  4. Then, execute the following command: python3 -m http.server 
+  (some machines may call python using "python")
+  5. Depending on your operating system, you may be prompted with a security warning or message - make sure to allow the permissions it is asking. 
+  6. The terminal window can now be minimized. To start running the prototype, click on LoginScreen2.html (same directory as README.txt)
+  7. From there, all the pages can be traversed through links and buttons in the prototype.
+  NOTE: to preserve functionality, it is best not to access pages by opening them directly.
+
+################################################################################################
+## The information below is not necessary or relevant to setting up the prototype for grading ##
+################################################################################################
 To Deploy the prototype:
   Locally - clone the repository or download the respository as a .zip file and extract it on your local device. 
   Then, within the directory that the repository is located, use python's built in http server to run the application with the following command: python -m http.server 8000.
