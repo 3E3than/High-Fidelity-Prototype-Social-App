@@ -18,7 +18,7 @@ IMPORTANT (SETUP FOR INSTRUCTOR/GRADER):
 ################################################################################################
 To Deploy the prototype:
   Locally - clone the repository or download the respository as a .zip file and extract it on your local device. 
-  Then, within the directory that the repository is located, use python's built in http server to run the application with the following command: python -m http.server 8000.
+  Then, within the directory that the repository is located, use python's built in http server to run the application with the following command: python -m http.server
   Access the webpage by navigating to http://localhost:8000 in your browser.
   To begin at the login page, launch LoginScreen2.html and follow the on-screen instructions to create a dummy account, 
   which will allow you to navigate the user interface, select bars to choose from, and check matches as the prototype mimics 
