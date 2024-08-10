@@ -7,6 +7,30 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+<style>
+    .tag {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 4px;
+        border-radius: 20px;
+        background-color: #d3d3d3;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border: none;
+        text-align: center;
+    }
+
+    .tag.selected {
+        background-color: #007bff; 
+        color: white;
+    }
+
+    .tag:hover {
+        background-color: #b0b0b0; 
+    }
+</style>
+
 <body>
 <header>
     <button class="back-button" onclick="history.back()">&lt;</button>
@@ -53,13 +77,22 @@
         <button type="submit" class="btn btn-primary btn-block">Create Profile</button>
     </form>
 </div>
-<div
-    class="modal fade"
-    id="profilePicModal"
-    tabindex="-1"
-    aria-labelledby="profilePicModalLabel"
-    aria-hidden="true"
->
+<!-- Popup Modal -->
+<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notificationModalLabel">Notification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="notificationMessage"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="profilePicModal" tabindex="-1" aria-labelledby="profilePicModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -76,13 +109,7 @@
         </div>
     </div>
 </div>
-<div
-    class="modal fade"
-    id="interestModal"
-    tabindex="-1"
-    aria-labelledby="interestModalLabel"
-    aria-hidden="true"
->
+<div class="modal fade" id="interestModal" tabindex="-1" aria-labelledby="interestModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -91,50 +118,49 @@
             </div>
             <div class="modal-body">
                 <div class="tag-container" id="modal-tag-container">
-    <div class="category sports">Sports</div>
-    <div class="tag" data-value="Basketball">Basketball</div>
-    <div class="tag" data-value="Football">Football</div>
-    <div class="tag" data-value="Soccer">Soccer</div>
-    <div class="tag" data-value="Baseball">Baseball</div>
-    <div class="tag" data-value="Sports news">Sports news</div>
-    <div class="tag" data-value="Gymnastics">Gymnastics</div>
-    <div class="tag" data-value="Skateboarding">Skateboarding</div>
-    <div class="tag" data-value="Scootering">Scootering</div>
-    <div class="tag" data-value="MMA">MMA</div>
-    <div class="tag" data-value="Wrestling">Wrestling</div>
+                    <div class="category sports">Sports</div>
+                    <div class="tag" data-value="Basketball">Basketball</div>
+                    <div class="tag" data-value="Football">Football</div>
+                    <div class="tag" data-value="Soccer">Soccer</div>
+                    <div class="tag" data-value="Baseball">Baseball</div>
+                    <div class="tag" data-value="Sports news">Sports news</div>
+                    <div class="tag" data-value="Gymnastics">Gymnastics</div>
+                    <div class="tag" data-value="Skateboarding">Skateboarding</div>
+                    <div class="tag" data-value="Scootering">Scootering</div>
+                    <div class="tag" data-value="MMA">MMA</div>
+                    <div class="tag" data-value="Wrestling">Wrestling</div>
 
-    <div class="category beauty">Beauty</div>
-    <div class="tag" data-value="Makeup artists">Makeup artists</div>
-    <div class="tag" data-value="Nails">Nails</div>
-    <div class="tag" data-value="Hair">Hair</div>
-    <div class="tag" data-value="Skin & body care">Skin & body care</div>
+                    <div class="category beauty">Beauty</div>
+                    <div class="tag" data-value="Makeup artists">Makeup artists</div>
+                    <div class="tag" data-value="Nails">Nails</div>
+                    <div class="tag" data-value="Hair">Hair</div>
+                    <div class="tag" data-value="Skin & body care">Skin & body care</div>
 
-    <div class="category personality">Personality</div>
-    <div class="tag" data-value="Extroverted">Extroverted</div>
-    <div class="tag" data-value="Quiet">Quiet</div>
-    <div class="tag" data-value="Gentle">Gentle</div>
-    <div class="tag" data-value="Rational">Rational</div>
+                    <div class="category personality">Personality</div>
+                    <div class="tag" data-value="Extroverted">Extroverted</div>
+                    <div class="tag" data-value="Quiet">Quiet</div>
+                    <div class="tag" data-value="Gentle">Gentle</div>
+                    <div class="tag" data-value="Rational">Rational</div>
 
-    <div class="category music">Music</div>
-    <div class="tag" data-value="Country">Country</div>
-    <div class="tag" data-value="Electronic">Electronic</div>
-    <div class="tag" data-value="Rock">Rock</div>
-    <div class="tag" data-value="Pop">Pop</div>
+                    <div class="category music">Music</div>
+                    <div class="tag" data-value="Country">Country</div>
+                    <div class="tag" data-value="Electronic">Electronic</div>
+                    <div class="tag" data-value="Rock">Rock</div>
+                    <div class="tag" data-value="Pop">Pop</div>
 
-    <div class="category pets">Pets</div>
-    <div class="tag" data-value="Cat">Cat</div>
-    <div class="tag" data-value="Dog">Dog</div>
-    <div class="tag" data-value="Insects">Insects</div>
+                    <div class="category pets">Pets</div>
+                    <div class="tag" data-value="Cat">Cat</div>
+                    <div class="tag" data-value="Dog">Dog</div>
+                    <div class="tag" data-value="Insects">Insects</div>
 
-    <div class="category sexual_orientation">Sexual Orientation</div>
-    <div class="tag" data-value="Heterosexual">Heterosexual</div>
-    <div class="tag" data-value="Homosexual">Homosexual</div>
-    <div class="tag" data-value="Bisexual">Bisexual</div>
-    <div class="tag" data-value="Asexual">Asexual</div>
-    <div class="tag" data-value="Pansexual">Pansexual</div>
-    <div class="tag" data-value="Queer">Queer</div>
-</div>
-
+                    <div class="category sexual_orientation">Sexual Orientation</div>
+                    <div class="tag" data-value="Heterosexual">Heterosexual</div>
+                    <div class="tag" data-value="Homosexual">Homosexual</div>
+                    <div class="tag" data-value="Bisexual">Bisexual</div>
+                    <div class="tag" data-value="Asexual">Asexual</div>
+                    <div class="tag" data-value="Pansexual">Pansexual</div>
+                    <div class="tag" data-value="Queer">Queer</div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="save-tags">Save</button>
@@ -154,7 +180,23 @@
             localStorage.setItem("age", document.getElementById("age").value);
             localStorage.setItem("bio", document.getElementById("bio").value);
         }
+
+        // Check if coming from the login page
+        const params = new URLSearchParams(window.location.search);
+        const fromPage = params.get('from');
+
+        let message = '';
+        if (fromPage === 'createAccount') {
+            message = 'Start creating your profile';
+        } else {
+            message = 'Edit your profile';
+        }
+
+        document.getElementById('notificationMessage').innerText = message;
+        const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+        notificationModal.show();
     }
+
     document.addEventListener("DOMContentLoaded", function() {
         const interests = JSON.parse(localStorage.getItem("interests")) || [];
         updateSelectedTags(interests);
