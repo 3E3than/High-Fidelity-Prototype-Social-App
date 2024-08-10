@@ -34,11 +34,15 @@
 <body>
 <header>
     <button class="back-button" onclick="history.back()">&lt;</button>
-    <h1>Create Your Profile</h1>
+    <h1>View Your Profile</h1>
     <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
     <div class="menu-content" id="menuContent">
-        <a href="faq.html">FAQs</a>
-        <a href="mission.html">Mission</a>
+            <a href="bar_landing_page.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="settings.html">Settings</a>
+            <a href="faq.html">FAQs</a>
+            <a href="mission.html">Mission</a>
+            <a href="#" onclick="logout()">Logout</a>
     </div>
 </header>
 <div class="profile-container">
@@ -68,13 +72,13 @@
             <div class="tag-container" id="tag-container">
                 <!-- Selected tags will be displayed here -->
             </div>
-            <button type="button" class="btn btn-secondary mt-3" data-bs-toggle="modal" data-bs-target="#interestModal">Select Interests</button>
+            <button type="button" class="btn btn-secondary mt-3" data-bs-toggle="modal" data-bs-target="#interestModal">Edit Interests</button>
         </div>
         <div class="form-group">
             <label for="bio">Bio</label>
             <input type="text" class="form-control" id="bio" placeholder="Enter bio">
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Create Profile</button>
+        <button type="submit" class="btn btn-primary btn-block">Save Profile</button>
     </form>
 </div>
 <!-- Popup Modal -->
