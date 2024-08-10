@@ -7,6 +7,30 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+<style>
+    .tag {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 4px;
+        border-radius: 20px;
+        background-color: #d3d3d3;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border: none;
+        text-align: center;
+    }
+
+    .tag.selected {
+        background-color: #007bff; 
+        color: white;
+    }
+
+    .tag:hover {
+        background-color: #b0b0b0; 
+    }
+</style>
+
 <body>
 <header>
     <button class="back-button" onclick="history.back()">&lt;</button>
