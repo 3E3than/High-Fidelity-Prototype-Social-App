@@ -3,38 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Your Profile</title>
+    <title>Create Account</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<style>
-    .tag {
-        display: inline-block;
-        padding: 8px 12px;
-        margin: 4px;
-        border-radius: 20px;
-        background-color: #d3d3d3;
-        color: #333;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        border: none;
-        text-align: center;
-    }
-
-    .tag.selected {
-        background-color: #007bff; 
-        color: white;
-    }
-
-    .tag:hover {
-        background-color: #b0b0b0; 
-    }
-</style>
-
 <body>
 <header>
     <button class="back-button" onclick="history.back()">&lt;</button>
-    <h1>Create Your Profile</h1>
+    <h1>Create Account</h1>
     <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
     <div class="menu-content" id="menuContent">
         <a href="faq.html">FAQs</a>
@@ -42,243 +18,48 @@
     </div>
 </header>
 <div class="profile-container">
-    <h2 class="text-center">Profile</h2>
-    <form id="datingInfoForm">
-        <div role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profilePicModal" id="profile-click">
-            <img id="profile-pic" src="profile.svg" />
+   
+    <form id="createAccountForm">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username">
         </div>
         <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter name">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password">
         </div>
         <div class="form-group">
-            <label for="gender">Gender</label>
-            <select class="form-control" id="gender">
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-            </select>
+            <label for="repeatPassword">Repeat Password</label>
+            <input type="password" class="form-control" id="repeatPassword" placeholder="Repeat password">
         </div>
         <div class="form-group">
-            <label for="age">Age</label>
-            <input type="number" class="form-control" id="age" placeholder="Enter age">
+            <label for="birthday">Birthday</label>
+            <input type="date" class="form-control" id="birthday">
         </div>
         <div class="form-group">
-            <label for="interests">Interests</label>
-            <div class="tag-container" id="tag-container">
-                <!-- Selected tags will be displayed here -->
-            </div>
-            <button type="button" class="btn btn-secondary mt-3" data-bs-toggle="modal" data-bs-target="#interestModal">Select Interests</button>
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email">
         </div>
         <div class="form-group">
-            <label for="bio">Bio</label>
-            <input type="text" class="form-control" id="bio" placeholder="Enter bio">
+            <label for="phone">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" placeholder="Enter phone number">
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Create Profile</button>
+        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
     </form>
 </div>
-<!-- Popup Modal -->
-<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="notificationModalLabel">Notification</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="notificationMessage"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="profilePicModal" tabindex="-1" aria-labelledby="profilePicModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="profilePicModalLabel">Change Profile Photo</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-capture-window"></button>
-            </div>
-            <div class="modal-body">
-                <label for="profile-pic-file" class="form-label" style="color: white"> Say Cheese! </label>
-                <video id="video" autoplay></video>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="capture-btn">Capture and Set Profile Pic</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="interestModal" tabindex="-1" aria-labelledby="interestModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="interestModalLabel">Select Interests</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="tag-container" id="modal-tag-container">
-                    <div class="category sports">Sports</div>
-                    <div class="tag" data-value="Basketball">Basketball</div>
-                    <div class="tag" data-value="Football">Football</div>
-                    <div class="tag" data-value="Soccer">Soccer</div>
-                    <div class="tag" data-value="Baseball">Baseball</div>
-                    <div class="tag" data-value="Sports news">Sports news</div>
-                    <div class="tag" data-value="Gymnastics">Gymnastics</div>
-                    <div class="tag" data-value="Skateboarding">Skateboarding</div>
-                    <div class="tag" data-value="Scootering">Scootering</div>
-                    <div class="tag" data-value="MMA">MMA</div>
-                    <div class="tag" data-value="Wrestling">Wrestling</div>
-
-                    <div class="category beauty">Beauty</div>
-                    <div class="tag" data-value="Makeup artists">Makeup artists</div>
-                    <div class="tag" data-value="Nails">Nails</div>
-                    <div class="tag" data-value="Hair">Hair</div>
-                    <div class="tag" data-value="Skin & body care">Skin & body care</div>
-
-                    <div class="category personality">Personality</div>
-                    <div class="tag" data-value="Extroverted">Extroverted</div>
-                    <div class="tag" data-value="Quiet">Quiet</div>
-                    <div class="tag" data-value="Gentle">Gentle</div>
-                    <div class="tag" data-value="Rational">Rational</div>
-
-                    <div class="category music">Music</div>
-                    <div class="tag" data-value="Country">Country</div>
-                    <div class="tag" data-value="Electronic">Electronic</div>
-                    <div class="tag" data-value="Rock">Rock</div>
-                    <div class="tag" data-value="Pop">Pop</div>
-
-                    <div class="category pets">Pets</div>
-                    <div class="tag" data-value="Cat">Cat</div>
-                    <div class="tag" data-value="Dog">Dog</div>
-                    <div class="tag" data-value="Insects">Insects</div>
-
-                    <div class="category sexual_orientation">Sexual Orientation</div>
-                    <div class="tag" data-value="Heterosexual">Heterosexual</div>
-                    <div class="tag" data-value="Homosexual">Homosexual</div>
-                    <div class="tag" data-value="Bisexual">Bisexual</div>
-                    <div class="tag" data-value="Asexual">Asexual</div>
-                    <div class="tag" data-value="Pansexual">Pansexual</div>
-                    <div class="tag" data-value="Queer">Queer</div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="save-tags">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
 <script>
-    window.onload = (event) => {
-        if (localStorage.getItem("name")) document.getElementById("name").value = localStorage.getItem("name");
-        if (localStorage.getItem("gender")) document.getElementById("gender").value = localStorage.getItem("gender");
-        if (localStorage.getItem("age")) document.getElementById("age").value = localStorage.getItem("age");
-        if (localStorage.getItem("bio")) document.getElementById("bio").value = localStorage.getItem("bio");
-        oninput = (event) => {
-            localStorage.setItem("name", document.getElementById("name").value);
-            localStorage.setItem("gender", document.getElementById("gender").value);
-            localStorage.setItem("age", document.getElementById("age").value);
-            localStorage.setItem("bio", document.getElementById("bio").value);
-        }
+    document.getElementById('createAccountForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Save account information to local storage
+        localStorage.setItem('username', document.getElementById('username').value);
+        localStorage.setItem('password', document.getElementById('password').value);
+        localStorage.setItem('birthday', document.getElementById('birthday').value);
+        localStorage.setItem('email', document.getElementById('email').value);
+        localStorage.setItem('phone', document.getElementById('phone').value);
 
-        // Check if coming from the login page
-        const params = new URLSearchParams(window.location.search);
-        const fromPage = params.get('from');
-
-        let message = '';
-        if (fromPage === 'createAccount') {
-            message = 'Start creating your profile';
-        } else {
-            message = 'Edit your profile';
-        }
-
-        document.getElementById('notificationMessage').innerText = message;
-        const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
-        notificationModal.show();
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        const interests = JSON.parse(localStorage.getItem("interests")) || [];
-        updateSelectedTags(interests);
-
-        document.getElementById("datingInfoForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            localStorage.setItem("name", document.getElementById("name").value);
-            localStorage.setItem("gender", document.getElementById("gender").value);
-            localStorage.setItem("age", document.getElementById("age").value);
-            localStorage.setItem("bio", document.getElementById("bio").value);
-
-            // Save selected interests
-            const selectedInterests = Array.from(document.querySelectorAll("#tag-container .tag.selected")).map(tag => tag.getAttribute("data-value"));
-            localStorage.setItem("interests", JSON.stringify(selectedInterests));
-
-            window.location.href = 'bar_landing_page.html';
-        });
+        // Redirect to profile page
+        window.location.href = 'create_profile.html?from=login';
     });
-
-    document.getElementById("profile-click").addEventListener("click", openCaptureWindow);
-
-    function openCaptureWindow() {
-        navigator.mediaDevices.getUserMedia({audio: false, video: true}).then((stream) => {
-            video.srcObject = stream;
-            videostream = stream;
-        }).catch((err) => {
-            alert(err);
-        });
-    }
-
-    document.getElementById("close-capture-window").addEventListener("click", closeCaptureWindow);
-
-    function closeCaptureWindow() {
-        videostream.getTracks()[0].stop();
-        videostream.stop();
-    }
-
-    document.getElementById("capture-btn").onclick = function () {
-        const canvas = document.createElement("canvas");
-        canvas.width = 512; 
-        canvas.height = 512;
-        canvas.getContext("2d").drawImage(document.getElementById("video"), 0, 0, 512, 512);
-        localStorage.setItem("photo", canvas.toDataURL("image/jpeg"));
-        document.getElementById("profile-pic").src = localStorage.getItem("photo");
-        document.getElementById("close-capture-window").click();
-    };
-
-    document.getElementById('tag-container').addEventListener('click', function(event) {
-        if (event.target.classList.contains('tag')) {
-            event.target.classList.toggle('selected');
-        }
-    });
-
-    document.getElementById('modal-tag-container').addEventListener('click', function(event) {
-        if (event.target.classList.contains('tag')) {
-            event.target.classList.toggle('selected');
-        }
-    });
-
-    document.getElementById('save-tags').addEventListener('click', function() {
-        // Save selected interests
-        const selectedInterests = Array.from(document.querySelectorAll("#modal-tag-container .tag.selected")).map(tag => tag.getAttribute("data-value"));
-        localStorage.setItem("interests", JSON.stringify(selectedInterests));
-
-        // Update tags on main page
-        updateSelectedTags(selectedInterests);
-
-        // Close modal
-        document.querySelector("#interestModal .btn-close").click();
-    });
-
-    function updateSelectedTags(selectedInterests) {
-        const tagContainer = document.getElementById("tag-container");
-        tagContainer.innerHTML = ""; // Clear existing tags
-        selectedInterests.forEach(interest => {
-            const tag = document.createElement("div");
-            tag.className = "tag selected";
-            tag.setAttribute("data-value", interest);
-            tag.textContent = interest;
-            tagContainer.appendChild(tag);
-        });
-    }
 
     function toggleMenu() {
         const menuContent = document.getElementById("menuContent");
