@@ -9,21 +9,13 @@ IMPORTANT (SETUP FOR USER):
   4. Then, execute the following command: python3 -m http.server 
   (some machines may call python using "python")
   5. Depending on your operating system, you may be prompted with a security warning or message - make sure to allow the permissions it is asking. 
-  6. The terminal window can now be minimized. To start running the prototype, click on LoginScreen2.html (same directory as README.txt)
+  6. The terminal window can now be minimized. To start running the prototype,go to http://localhost:8000 on your browser and click on LoginScreen2.html (same directory as README.txt)
   7. From there, all the pages can be traversed through links and buttons in the prototype.
   NOTE: to preserve functionality, it is best not to access pages by opening them directly.
 
 ################################################################################################
 ## The information below is not necessary or relevant to setting up the prototype for grading ##
 ################################################################################################
-To Deploy the prototype:
-  Locally - clone the repository or download the respository as a .zip file and extract it on your local device. 
-  Then, within the directory that the repository is located, use python's built in http server to run the application with the following command: python -m http.server
-  Access the webpage by navigating to http://localhost:8000 in your browser.
-  To begin at the login page, launch LoginScreen2.html and follow the on-screen instructions to create a dummy account, 
-  which will allow you to navigate the user interface, select bars to choose from, and check matches as the prototype mimics 
-  a typical user experience with the app.
-
   Web-Based - Due the usage of the insecure localStorage API, it is NOT recommended to provide real information when email, 
   username, or password are prompted from the user. If you wish to deploy this prototype in a web-based application, the
   repository can be cloned or downloaded as a .zip file, then the over-drinks folder can be uploaded to your website. To ensure
