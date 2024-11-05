@@ -11,7 +11,8 @@ IMPORTANT (SETUP FOR USER):
   5. Depending on your operating system, you may be prompted with a security warning or message - make sure to allow the permissions it is asking. 
   6. The terminal window can now be minimized. To start running the prototype,go to http://localhost:8000 on your browser and click on LoginScreen2.html (same directory as README.txt)
   7. From there, all the pages can be traversed through links and buttons in the prototype.
-  NOTE: to preserve functionality, it is best not to access pages by opening them directly.
+  NOTE: to preserve functionality, it is best not to access pages by opening them directly. 
+  WARNING: The AI functionalities of the prototype may not be supported anymore due to insufficient credits on rea.gent, the web platform that was used to enable AI recommendations.
 
 ################################################################################################
 ## The information below is not necessary or relevant to setting up the prototype for grading ##
