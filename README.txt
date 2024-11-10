@@ -2,7 +2,6 @@
 ## Using the Over Drinks Web App High-Fidelity Prototype ##
 ###########################################################
 IMPORTANT (SETUP FOR USER):
-  If you are an instructor testing/grading the prototype, please follow the instructions below to start the prototype:
   1. Clone the repository or download and extract the .zip file onto your local machine.
   2. Navigate to the over-drinks directory - the directory should contain this very README file.
   3. Open a terminal window and navigate to over-drinks directory, and verify this through ls -al, and look for README.txt
